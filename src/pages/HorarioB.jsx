@@ -60,7 +60,7 @@ const HorarioB = () => {
         </aside>
         <main className="flex-1 p-10">
           <div className='flex h-12 items-center'>
-            <h1 className="text-2xl font-bold">Horarios por Bloque</h1>
+            <h1 className="text-2xl font-bold">Horarios - Salones</h1>
 
             <Info>
                 <div className="p-3 w-72 bg-white">
