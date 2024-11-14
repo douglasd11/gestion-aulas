@@ -1,7 +1,7 @@
 import './App.css'
 import Logo from './assets/LogoIsoft.png'
 
-const App = () => {
+const HorarioB = () => {
   return (
     <>
       <header className="bg-blue-500 p-4 flex justify-between items-center h-14">
@@ -24,28 +24,30 @@ const App = () => {
           </nav>
         </aside>
         <main className="flex-1 p-10">
-          <h1 className="text-2xl font-bold mb-4">Horarios por semana</h1>
-
-          <table className="table-auto w-full border border-gray-300">
-            <thead className='bg-gray-200'>
-              <tr>
-                <th className="px-4 py-2 text-center">Hora</th>
-                <th className="px-4 py-2 text-center">Lunes</th>
-                <th className="px-4 py-2 text-center">Martes</th>
-                <th className="px-4 py-2 text-center">Miércoles</th>
-                <th className="px-4 py-2 text-center">Jueves</th>
-                <th className="px-4 py-2 text-center">Viernes</th>
+          <h1 className="text-2xl font-bold mb-4">Horarios por Bloque</h1>
+          
+          <table className="min-w-full bg-white border border-gray-300">
+            <thead>
+              <tr className="bg-gray-200">
+                <th className="py-2 px-4 border-b">Bloque</th>
+                <th className="py-2 px-4 border-b">Salón 1</th>
+                <th className="py-2 px-4 border-b">Salón 2</th>
+                <th className="py-2 px-4 border-b">Salón 3</th>
+                <th className="py-2 px-4 border-b">Salón 4</th>
+                <th className="py-2 px-4 border-b">Salón 5</th>
               </tr>
             </thead>
             <tbody>
-              {Array.from({ length: 12 }, (_, i) => (
-                <tr key={i}>
-                  <td className="border px-4 py-2 text-center bg-blue-400 text-white">{`${7 + i}:00`}</td>
-                  <td className="border px-4 py-2 cursor-pointer hover:bg-gray-200"></td>
-                  <td className="border px-4 py-2 cursor-pointer hover:bg-gray-200"></td>
-                  <td className="border px-4 py-2 cursor-pointer hover:bg-gray-200"></td>
-                  <td className="border px-4 py-2 cursor-pointer hover:bg-gray-200"></td>
-                  <td className="border px-4 py-2 cursor-pointer hover:bg-gray-200"></td>
+              {['Bloque A', 'Bloque B', 'Bloque C'].map((bloque, index) => (
+                <tr key={index} className="hover:bg-gray-100">
+                  <td className="py-2 px-4 border-b">{bloque}</td>
+                  {[...Array(5)].map((_, i) => (
+                    <td key={i} className="py-2 px-4 border-b">
+                      <button className="w-full h-full bg-transparent transition-all text-gray-600 py-1 px-2 rounded hover:bg-blue-600 hover:text-white">
+                        {bloque.split(' ')[1]}10{i + 1}
+                      </button>
+                    </td>
+                  ))}
                 </tr>
               ))}
             </tbody>
@@ -56,4 +58,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default HorarioB;
