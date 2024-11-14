@@ -1,49 +1,75 @@
 import './App.css'
-import { useState } from 'react';
+import { Box, Button, Typography } from "@mui/material";
+// import { Link } from "react-router-dom";
 
-function Register() {
+import { CheckboxInput, PageMetaData, PasswordInput } from "../components";
+import { FormInput } from "../components";
+// import useLogin from "./useLogin";
+// import AuthLayout from "../AuthLayout";
 
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [role, setRole] = useState('administrativos');
+/**
+ * Bottom Links goes here
+ */
+// const BottomLink = () => {
+//   return <Box sx={{
+//     my: "16px",
+//     display: "flex",
+//     justifyContent: "center"
+//   }}>
+//       <Typography variant="body2" color={"text.secondary"} sx={{
+//       display: "flex",
+//       flexWrap: "nowrap",
+//       gap: 0.5
+//     }}>
+//         Don&apos;t have an account?&nbsp;
+//         <Link to="/auth/register">
+//           <Typography variant="subtitle2" component={"span"}>
+//             Register
+//           </Typography>
+//         </Link>
+//       </Typography>
+//     </Box>;
+// };
 
-  return (
-    <div className="App flex items-center justify-center flex-col min-h-screen bg-gray-100">
+const App = () => {
+  // const {
+  //   loading,
+  //   login,
+  //   control
+  // } = useLogin();
+  return <>
+      <PageMetaData title={"Login"} />  
 
-      <div className="bg-white p-8 rounded shadow-md w-96">
-        <h1 className="text-2xl font-bold mb-4">Register</h1>
+      {/* <AuthLayout authTitle="Login In" helpText="Enter your email address and password to access admin panel." bottomLinks={<BottomLink />}> */}
+        
+        <form>
+          <FormInput name="email" type="email" label="Email Address" control={true} />
 
-        <input
-          type="text"
-          placeholder="Nombre"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          className="w-full p-2 mb-4 border border-gray-300 rounded"
-        />
-        <input
-          type="email"
-          placeholder="Correo"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="w-full p-2 mb-4 border border-gray-300 rounded"
-        />
-        <select
-          value={role}
-          onChange={(e) => setRole(e.target.value)}
-          className="w-full p-2 mb-4 border border-gray-300 rounded"
-        >
-          <option value="administrativos">Administrativos</option>
-          <option value="profesor">Profesor</option>
-          <option value="estudiante">Estudiante</option>
-        </select>
+          <Box sx={{
+          mt: 2
+        }}>
+            <PasswordInput name="password" type="password" label={"Password"} control={true} />
+          </Box>
 
-        <button className="w-full p-2 bg-blue-500 text-white rounded hover:bg-blue-600">
-          Register
-        </button>
-      </div>
+          <Box sx={{
+          mt: 1
+        }}>
+            <CheckboxInput name="rememberMe" label="Remember me" control={true} />
+          </Box>
 
-    </div>
-  );
-}
+          <Box sx={{
+          display: "flex",
+          justifyContent: "center",
+          mt: 2
+        }}>
+            <Button variant="contained" color="primary" type="submit" disabled={false} size={"large"}>
+              Login
+            </Button>
+          </Box>
+        </form>
 
-export default Register
+      {/* </AuthLayout> */}
+    </>;
+};
+
+export default App;

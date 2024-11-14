@@ -10,10 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@mui/material": "^5.14.12",
     "autoprefixer": "^10.4.20",
     "gestion-aulas": "file:",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-hook-form": "^7.53.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",
