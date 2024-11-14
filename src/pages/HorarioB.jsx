@@ -1,6 +1,7 @@
 import '../App.css';
 import Logo from '../assets/LogoIsoft.png';
-import React, { useState } from 'react';
+import { useState } from 'react';
+import Info from '../components/Info';
 
 const HorarioB = () => {
   const [bloque, setBloque] = useState('');
@@ -58,7 +59,18 @@ const HorarioB = () => {
           </nav>
         </aside>
         <main className="flex-1 p-10">
-          <h1 className="text-2xl font-bold mb-4">Horarios por Bloque</h1>
+          <div className='flex h-12 items-center'>
+            <h1 className="text-2xl font-bold">Horarios por Bloque</h1>
+
+            <Info>
+                <div className="p-3 w-72 bg-white">
+                  <p className="text-sm text-gray">
+                    Aqui va la info de como usar esta vista
+                  </p>
+                </div>
+              </Info>
+
+          </div>
 
           <label htmlFor="bloque" className="block text-lg font-medium text-gray-700 mb-2">Selecciona un bloque:</label>
           <select
