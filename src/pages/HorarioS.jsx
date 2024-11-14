@@ -26,7 +26,7 @@ const HorarioS = () => {
             </nav>
           </aside>
           <main className="flex-1 p-10">
-            <h1 className="text-2xl font-bold mb-4">Horarios por semana</h1>
+            <h1 className="text-2xl font-bold mb-4">Horario por semana</h1>
   
             <table className="table-auto w-full border border-gray-300">
               <thead className='bg-gray-200'>

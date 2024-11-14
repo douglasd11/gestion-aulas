@@ -58,7 +58,7 @@ const HorarioB = () => {
           </nav>
         </aside>
         <main className="flex-1 p-10">
-          <h1 className="text-2xl font-bold mb-4">Horarios por Bloque</h1>
+          <h1 className="text-2xl font-bold mb-4">Bloques - Salones</h1>
 
           <label htmlFor="bloque" className="block text-lg font-medium text-gray-700 mb-2">Selecciona un bloque:</label>
           <select
