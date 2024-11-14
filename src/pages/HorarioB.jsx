@@ -1,5 +1,5 @@
-import './App.css'
-import Logo from './assets/LogoIsoft.png'
+import '../App.css'
+import Logo from '../assets/LogoIsoft.png'
 
 const HorarioB = () => {
   return (
