@@ -9,11 +9,11 @@ import ReservaU from "./pages/ReservaU";
 const App = () => {
   return (
     <>
-      {/* <HorarioB></HorarioB>
+      <HorarioB></HorarioB>
       <HorarioS></HorarioS>
       <Login></Login>
       <Register></Register>
-      <ReservaU></ReservaU> */}
+      <ReservaU></ReservaU>
       <ReservaA></ReservaA>
     </>
   );

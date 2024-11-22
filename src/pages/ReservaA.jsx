@@ -9,8 +9,8 @@ const ReservaA = () => {
         { dia: 'Lunes', hora: '8:00', salon: 'A101', estado: 'solicitud', usuario: 'Juan Pérez' },
         { dia: 'Martes', hora: '9:00', salon: 'B202', estado: 'activa', usuario: 'Ana Gómez' },
         { dia: 'Miércoles', hora: '10:00', salon: 'C303', estado: 'rechazada', usuario: 'Carlos Ruiz' },
-        { dia: 'Jueves', hora: '11:00', salon: 'D404', estado: 'activa', usuario: 'María López' },
-        { dia: 'Viernes', hora: '12:00', salon: 'E505', estado: 'solicitud', usuario: 'Luis Fernández' },
+        { dia: 'Jueves', hora: '11:00', salon: 'C104', estado: 'activa', usuario: 'María López' },
+        { dia: 'Viernes', hora: '12:00', salon: 'B205', estado: 'solicitud', usuario: 'Luis Fernández' },
     ]);
 
     const renderReservas = (estado) => {
@@ -52,9 +52,9 @@ const ReservaA = () => {
                 <div style={{ width: '50%', maxWidth: '1200px', height: '500px', border: '2px solid blue', borderRadius: '8px', padding: '20px', backgroundColor: '#f9f9f9' }}>
                     <Tabs>
                         <TabList style={{ backgroundColor: '#e0e0e0', padding: '10px', borderRadius: '8px 8px 0 0' }}>
-                            <Tab style={{ backgroundColor: '#d1e7dd', padding: '10px', borderRadius: '8px 8px 0 0' }}>Solicitud</Tab>
-                            <Tab style={{ backgroundColor: '#cfe2ff', padding: '10px', borderRadius: '8px 8px 0 0' }}>Activas</Tab>
-                            <Tab style={{ backgroundColor: '#f8d7da', padding: '10px', borderRadius: '8px 8px 0 0' }}>Rechazadas</Tab>
+                            <Tab style={{ backgroundColor: '#6aa9e9', padding: '10px', borderRadius: '8px 8px 0 0' }}>Solicitud</Tab>
+                            <Tab style={{ backgroundColor: '#98c3ed', padding: '10px', borderRadius: '8px 8px 0 0' }}>Activas</Tab>
+                            <Tab style={{ backgroundColor: '#cfe2ff', padding: '10px', borderRadius: '8px 8px 0 0' }}>Rechazadas</Tab>
                         </TabList>
 
                         <TabPanel>

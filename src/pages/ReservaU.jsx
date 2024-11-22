@@ -7,10 +7,10 @@ const ReservaU = () => {
         { dia: 'Lunes', hora: '8:00', salon: 'A101' },
         { dia: 'Martes', hora: '9:00', salon: 'B202' },
         { dia: 'Miércoles', hora: '10:00', salon: 'C303' },
-        { dia: 'Jueves', hora: '11:00', salon: 'D404' },
-        { dia: 'Viernes', hora: '12:00', salon: 'E505' },
+        { dia: 'Jueves', hora: '11:00', salon: 'B204' },
+        { dia: 'Viernes', hora: '12:00', salon: 'A105' },
     ]);
-
+    
     const handleClick = (codigo) => {
         alert(`Cancelando reserva del ${codigo}`);
     };
