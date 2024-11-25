@@ -5,6 +5,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import ReservaA from "./pages/ReservaA";
 import ReservaU from "./pages/ReservaU";
+import DispositivosAdmin from "./pages/Dispositivos";
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
       <Register></Register>
       <ReservaU></ReservaU>
       <ReservaA></ReservaA>
+      <DispositivosAdmin></DispositivosAdmin>
     </>
   );
 };
