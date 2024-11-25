@@ -6,6 +6,8 @@ import Register from "./pages/Register";
 import ReservaA from "./pages/ReservaA";
 import ReservaU from "./pages/ReservaU";
 import DispositivosAdmin from "./pages/Dispositivos";
+import InicioUsuario from "./pages/InicioUsuario";
+
 
 const App = () => {
   return (
@@ -17,6 +19,7 @@ const App = () => {
       <ReservaU></ReservaU>
       <ReservaA></ReservaA>
       <DispositivosAdmin></DispositivosAdmin>
+      <InicioUsuario></InicioUsuario>
     </>
   );
 };
