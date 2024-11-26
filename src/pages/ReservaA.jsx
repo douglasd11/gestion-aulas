@@ -1,8 +1,7 @@
-import "../App.css";
-import Logo from "../assets/LogoIsoft.png";
-import React, { useState } from "react";
-import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import { useState } from "react";
+import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
+import "../App.css";
 
 const ReservaA = () => {
     const [reservas, setReservas] = useState([

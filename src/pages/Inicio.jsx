@@ -1,8 +1,6 @@
-import React from "react";
 import "../App.css";
+import { string } from "../tools/Types";
 
-import Header from "../components/Header";
-import Menu from "../components/menu";
 
 const InicioUsuario = ({ nombreUsuario }) => {
     return (
@@ -24,6 +22,10 @@ const InicioUsuario = ({ nombreUsuario }) => {
             </div>
         </main>
     );
+};
+
+InicioUsuario.propTypes = {
+    nombreUsuario: string.isRequired,
 };
 
 export default InicioUsuario;

@@ -12,8 +12,9 @@ export const ROUTES = {
     verifyEmail: '/auth/verify-email',
   },
   dashboard: {
-    home: "/dashboard",
+    home: "/",
+    rooms: "/rooms",
+    reservations: "/reservations",
   },
-  inicio: "/",
 };
 

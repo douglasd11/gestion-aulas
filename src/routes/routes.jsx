@@ -3,47 +3,53 @@ import App from "../App";
 import { ROUTES } from "../tools/CONSTANTS";
 import LoadComponent from "./LoadComponents";
 
+// Mapa estático de rutas a módulos
+const componentMap = {
+  "Login": () => import("../pages/Login"),
+  "Register": () => import("../pages/Register"),
+  "Inicio": () => import("../pages/Inicio"),
+  "HorarioB": () => import("../pages/HorarioB"),
+  "ReservaA": () => import("../pages/ReservaA"),
+};
+
 const router = [
   {
     path: "/",
-    element: (<Outlet />),
+    element: <Outlet />,
     children: [
       {
         path: ROUTES.auth.login,
-        element: <LoadComponent ruteComponent={"../pages/Login"} />,
+        element: <LoadComponent component="Login" componentsMap={componentMap} loading={<>Cargando...</>}/>,
       },
       {
         path: ROUTES.auth.register,
-        element: <LoadComponent ruteComponent={"../pages/Register"} />,
+        element: <LoadComponent component="Register" componentsMap={componentMap} loading={<>Cargando...</>}/>,
       },
-        // {
-      //   path: ROUTES.auth.changePassword + "/:id",
-      //   element: <LoadComponent ruteComponent={"@pages/Login"} />,
-      // },
-      // {
-      //   path: ROUTES.auth.verifyEmail + "/:id",
-      //   element: <LoadComponent ruteComponent={"@src/pages/"} />,
-      // },
       {
         path: "/",
         element: <App />,
         children: [
           {
-            path: ROUTES.inicio,
-            element: <LoadComponent ruteComponent={"@pages/InicioUsuario"} />,
+            path: ROUTES.dashboard.home,
+            element: <LoadComponent component="Inicio" componentsMap={componentMap} loading={<>Cargando...</>}/>,
+          },
+          {
+            path: ROUTES.dashboard.rooms,
+            element: <LoadComponent component="HorarioB" componentsMap={componentMap} loading={<>Cargando...</>}/>,
+          },
+          {
+            path: ROUTES.dashboard.reservations,
+            element: <LoadComponent component="ReservaA" componentsMap={componentMap} loading={<>Cargando...</>}/>,
           },
           {
             path: "*",
-            element: <>
-              Error 404
-            </>,
+            element: <>Error 404</>,
           },
         ],
-        errorElement: <>
-          Error 500
-        </>,
+        errorElement: <>Error 500</>,
       },
     ],
   },
 ];
+
 export default router;

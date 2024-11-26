@@ -1,6 +1,5 @@
-import "../App.css";
-import Logo from "../assets/LogoIsoft.png";
 import { useState } from "react";
+import "../App.css";
 import Info from "../components/Info";
 
 const HorarioB = () => {

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import "../App.css";
-import Logo from "../assets/LogoIsoft.png";
 
 import Modal from "../components/modal/Modal";
 import useControlModal from "../hooks/useControlModal";

@@ -1,6 +1,5 @@
+import { useState } from "react";
 import "../App.css";
-import Logo from "../assets/LogoIsoft.png";
-import React, { useState } from "react";
 
 const ReservaU = () => {
     const [reservas, setReservas] = useState([

@@ -1,6 +1,6 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { CalendarIcon, ClassroomIcon, HomeIcon } from '../components/icons';
+import { ROUTES } from '../tools/CONSTANTS';
 
 const Menu = () => {
     return (
@@ -8,19 +8,19 @@ const Menu = () => {
             <nav>
                 <ul className='text-xl pt-6'>
                     <li>
-                        <a href="#" className="flex items-center gap-6 mb-1 p-4 hover:bg-gray-700 rounded-lg">
-                            <HomeIcon fill="white"/><p>Inicio</p>
-                        </a>
+                        <Link to={ROUTES.dashboard.home} className="flex items-center gap-6 mb-1 p-4 hover:bg-gray-700 rounded-lg">
+                            <HomeIcon fill="white" /><p>Inicio</p>
+                        </Link>
                     </li>
                     <li>
-                        <a href="#" className="flex items-center gap-6 mb-1 p-4 hover:bg-gray-700 rounded-lg">
-                            <ClassroomIcon/><p>Salones</p>
-                        </a>
+                        <Link to={ROUTES.dashboard.rooms} className="flex items-center gap-6 mb-1 p-4 hover:bg-gray-700 rounded-lg">
+                            <ClassroomIcon /><p>Salones</p>
+                        </Link>
                     </li>
                     <li>
-                        <a href="#" className="flex items-center gap-6 mb-1 p-4 hover:bg-gray-700 rounded-lg">
-                            <CalendarIcon/><p>Reservas</p> 
-                        </a>
+                        <Link to={ROUTES.dashboard.reservations} className="flex items-center gap-6 mb-1 p-4 hover:bg-gray-700 rounded-lg">
+                            <CalendarIcon /><p>Reservas</p>
+                        </Link>
                     </li>
                 </ul>
             </nav>

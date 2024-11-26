@@ -1,18 +1,23 @@
 import { lazy, Suspense } from "react";
-import { element, string } from "../tools/Types";
+import { element, object, string } from "../tools/Types";
 
-const LoadComponent = ({ ruteComponent, loading = null }) => {
-    let Component = lazy(async () => {
-        return Promise.all([import(ruteComponent)])
-            .then(([moduleExports]) => moduleExports)
-    });
-    return <Suspense fallback={loading}>
-        <Component />
-    </Suspense>;
-}
+const LoadComponent = ({ component, componentsMap, loading = null }) => {
+    if (!componentsMap || !componentsMap[component]) {
+        throw new Error(`El componente para la ruta "${component}" no existe.`);
+    }
+
+    const Component = lazy(componentsMap[component]);
+
+    return (
+        <Suspense fallback={loading}>
+            <Component />
+        </Suspense>
+    );
+};
 
 LoadComponent.propTypes = {
-    ruteComponent: string.isRequired,
+    component: string.isRequired,
+    componentsMap: object.isRequired,
     loading: element,
 };
 
