@@ -30,7 +30,6 @@ const ReservaU = () => {
                     <nav>
                         <ul>
                             <li className="mb-4"><a href="#" className="hover:text-gray-400">Inicio</a></li>
-                            <li className="mb-4"><a href="#" className="hover:text-gray-400">Horario</a></li>
                             <li className="mb-4"><a href="#" className="hover:text-gray-400">Salones</a></li>
                             <li className="mb-4"><a href="#" className="hover:text-gray-400">Reservas</a></li>
                         </ul>

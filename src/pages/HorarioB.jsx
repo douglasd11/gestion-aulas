@@ -52,7 +52,6 @@ const HorarioB = () => {
           <nav>
             <ul>
               <li className="mb-4"><a href="#" className="hover:text-gray-400">Inicio</a></li>
-              <li className="mb-4"><a href="#" className="hover:text-gray-400">Horario</a></li>
               <li className="mb-4"><a href="#" className="hover:text-gray-400">Salones</a></li>
               <li className="mb-4"><a href="#" className="hover:text-gray-400">Reservas</a></li>
             </ul>
@@ -65,7 +64,7 @@ const HorarioB = () => {
             <Info>
                 <div className="p-3 w-72 bg-white">
                   <p className="text-sm text-gray">
-                    Aquí se presentan los salones por su respectivo bloque
+                    Aquí se presentan los salones por su respectivo
                   </p>
                 </div>
               </Info>
