@@ -1,25 +1,11 @@
+import { Outlet } from "react-router-dom";
 import "./App.css";
-import HorarioB from "./pages/HorarioB";
-import HorarioS from "./pages/HorarioS";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import ReservaA from "./pages/ReservaA";
-import ReservaU from "./pages/ReservaU";
-import DispositivosAdmin from "./pages/Dispositivos";
-import InicioUsuario from "./pages/InicioUsuario";
 
 
 const App = () => {
   return (
     <>
-      <HorarioB></HorarioB>
-      <HorarioS></HorarioS>
-      <Login></Login>
-      <Register></Register>
-      <ReservaU></ReservaU>
-      <ReservaA></ReservaA>
-      <DispositivosAdmin></DispositivosAdmin>
-      <InicioUsuario></InicioUsuario>
+    <Outlet />
     </>
   );
 };

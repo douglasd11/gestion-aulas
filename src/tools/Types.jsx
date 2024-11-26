@@ -1,3 +1,3 @@
-import {object,any,string,array,func,node,bool,number,element,oneOf,shape,arrayOf} from "prop-types"
+import {object,any,string,array,func,node,bool,number,element,oneOf,shape,arrayOf,elementType} from "prop-types"
 
-export  {object,any,string,array,func,node,bool,number,element,oneOf,shape,arrayOf};
+export  {object,any,string,array,func,node,bool,number,element,oneOf,shape,arrayOf,elementType};
