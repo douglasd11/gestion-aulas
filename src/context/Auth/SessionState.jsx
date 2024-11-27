@@ -4,6 +4,7 @@ import { node } from '@/tools/Types'
 import { useCallback, useEffect, useState } from 'react'
 import { useNavigate } from "react-router-dom"
 import { API_PROTOTYPES } from '../../api/services'
+import { guardarEnLocalStorage } from '../../tools/utils'
 import SessionContext from './SessionContext'
 
 function SessionState({ children }) {
@@ -18,9 +19,10 @@ function SessionState({ children }) {
       setLoading(true)
       const response = await API_PROTOTYPES.auth.login(data)
       setLoading(false)
-
-      if (response?.data) {
-        setSession(response?.data.usuario)
+      if (response?.token) {
+        guardarEnLocalStorage('session', response)
+        setSession(response)
+        navigate(ROUTES.dashboard.home)
       }
 
 
@@ -62,23 +64,16 @@ function SessionState({ children }) {
   }, [])
 
   const handleAuthVerify = useCallback(async () => {
-    const token = await AuthToken()
-    if (!token) {
-      setSession(null)
-      return;
-    }
-    const response = await API_PROTOTYPES.auth.verify()
-
-    if (response?.data) {
-      setSession(response?.data.usuario)
-
-      if (window.location.pathname === ROUTES.auth.login || window.location.pathname === ROUTES.auth.signup) {
-        navigate(ROUTES.dashboard.home)
-      }
-
-    } else {
-      setSession(null)
-      
+    const session = await AuthToken()
+    const isAuthRute=window.location.pathname === ROUTES.auth.login || window.location.pathname === ROUTES.auth.register
+  
+    if (isAuthRute && session) {
+      setSession(session)
+      navigate(ROUTES.dashboard.home)
+    }else if (!isAuthRute && !session) {
+      navigate(ROUTES.auth.login)
+    }else{
+      setSession(session)
     }
   }, [navigate])
 

@@ -1,15 +1,16 @@
+import { obtenerDeLocalStorage } from '../tools/utils';
 import axiosInstance from './axios';
 
 let requestInterceptorId = null;
 
 const AuthToken = async () => {
-    const token = false;
+    const session = await obtenerDeLocalStorage('session');
     // Si hay un token, agrega el interceptor de solicitud
-    if (token) {
+    if (session) {
         // Agregar interceptor de solicitud
         requestInterceptorId = axiosInstance.interceptors.request.use(
             config => {
-                config.headers['Authorization'] = token;
+                config.headers['Authorization'] = session.token;
                 return config;
             },
             error => {
@@ -24,7 +25,7 @@ const AuthToken = async () => {
         }
     }
 
-    return token;
+    return session;
 }
 
 export default AuthToken;

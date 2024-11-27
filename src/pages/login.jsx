@@ -18,23 +18,16 @@ const Login = () => {
 
     const onSubmit = (formData) => {
         handleLogin(formData)
-            .then(({response}) => {
-                if (response?.status === 200) {
+            .then((response) => {
+                if(response){
                     resetForm()
-                }else{
-                    console.log(response)
-                    // if (response.data.message) {
-                    //     setResponseError(response.data.message)
-                    // }else{
-                    //     console.error(response)
-                    // }
                 }
             })
             .catch((error) => {
                 console.log(error)
                 if (error.response.data) {
                     if (error.response.data.message) {
-                        alert(error.response.data.message)
+                        setResponseError(error.response.data.message)
                     }else{
                         console.error(error)
                     }
