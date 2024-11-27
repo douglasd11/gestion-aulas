@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import App from "../App";
 import { ROUTES } from "../tools/CONSTANTS";
 import LoadComponent from "./LoadComponents";
+import SessionState from "../context/Auth/SessionState";
 
 // Mapa estático de rutas a módulos
 const componentMap = {
@@ -16,31 +17,36 @@ const componentMap = {
 const router = [
   {
     path: "/",
-    element: <Outlet />,
+    element:
+      <SessionState>
+        <Outlet />
+      </SessionState>,
     children: [
       {
         path: ROUTES.auth.login,
-        element: <LoadComponent component="Login" componentsMap={componentMap} loading={<>Cargando...</>}/>,
+        element: <LoadComponent component="Login" componentsMap={componentMap} loading={<>Cargando...</>} />,
       },
       {
         path: ROUTES.auth.register,
-        element: <LoadComponent component="Register" componentsMap={componentMap} loading={<>Cargando...</>}/>,
+        element: <LoadComponent component="Register" componentsMap={componentMap} loading={<>Cargando...</>} />,
       },
       {
-        path: "/",
-        element: <App />,
+        path: ROUTES.dashboard.home,
+        element:
+
+          <App />,
         children: [
           {
             path: ROUTES.dashboard.home,
-            element: <LoadComponent component="Inicio" componentsMap={componentMap} loading={<>Cargando...</>}/>,
+            element: <LoadComponent component="Inicio" componentsMap={componentMap} loading={<>Cargando...</>} />,
           },
           {
             path: ROUTES.dashboard.rooms,
-            element: <LoadComponent component="HorarioB" componentsMap={componentMap} loading={<>Cargando...</>}/>,
+            element: <LoadComponent component="HorarioB" componentsMap={componentMap} loading={<>Cargando...</>} />,
           },
           {
             path: ROUTES.dashboard.reservations,
-            element: <LoadComponent component="ReservaA" componentsMap={componentMap} loading={<>Cargando...</>}/>,
+            element: <LoadComponent component="ReservaA" componentsMap={componentMap} loading={<>Cargando...</>} />,
           },
           {
             path: ROUTES.dashboard.profile,
@@ -51,7 +57,12 @@ const router = [
             element: <>Error 404</>,
           },
         ],
+        
         errorElement: <>Error 500</>,
+      },
+      {
+        path: "*",
+        element: <>Error 404</>,
       },
     ],
   },
