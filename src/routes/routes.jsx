@@ -10,6 +10,7 @@ const componentMap = {
   "Inicio": () => import("../pages/Inicio"),
   "HorarioB": () => import("../pages/HorarioB"),
   "ReservaA": () => import("../pages/ReservaA"),
+  "Perfil": () => import("../pages/Perfil"),
 };
 
 const router = [
@@ -40,6 +41,10 @@ const router = [
           {
             path: ROUTES.dashboard.reservations,
             element: <LoadComponent component="ReservaA" componentsMap={componentMap} loading={<>Cargando...</>}/>,
+          },
+          {
+            path: ROUTES.dashboard.profile,
+            element: <LoadComponent component="Perfil" componentsMap={componentMap} loading={<>Cargando...</>}/>,
           },
           {
             path: "*",

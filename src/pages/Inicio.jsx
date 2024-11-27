@@ -2,11 +2,11 @@ import "../App.css";
 import { string } from "../tools/Types";
 
 
-const InicioUsuario = ({ nombreUsuario }) => {
+const Inicio = ({ nombreUsuario }) => {
     return (
         <main className="flex flex-col flex-1 justify-center items-center p-4 bg-slate-100">
             <h2 className="text-3xl font-semibold mb-4">
-                Bienvenido, {nombreUsuario}
+                Bienvenido {nombreUsuario ? nombreUsuario : "Wendy"}
             </h2>
             <p className="mb-8 text-center">
                 Consulta la disponibilidad de los salones o revisa tus reservas
@@ -24,8 +24,8 @@ const InicioUsuario = ({ nombreUsuario }) => {
     );
 };
 
-InicioUsuario.propTypes = {
+Inicio.propTypes = {
     nombreUsuario: string.isRequired,
 };
 
-export default InicioUsuario;
+export default Inicio;

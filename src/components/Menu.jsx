@@ -8,17 +8,17 @@ const Menu = () => {
             <nav>
                 <ul className='text-xl pt-6'>
                     <li>
-                        <Link to={ROUTES.dashboard.home} className="flex items-center gap-6 mb-1 p-4 hover:bg-gray-700 rounded-lg">
+                        <Link to={ROUTES.dashboard.home} className="flex items-center gap-6 mb-1 p-4 py-3 hover:bg-gray-700 rounded-lg">
                             <HomeIcon fill="white" /><p>Inicio</p>
                         </Link>
                     </li>
                     <li>
-                        <Link to={ROUTES.dashboard.rooms} className="flex items-center gap-6 mb-1 p-4 hover:bg-gray-700 rounded-lg">
+                        <Link to={ROUTES.dashboard.rooms} className="flex items-center gap-6 mb-1 p-4 py-3 hover:bg-gray-700 rounded-lg">
                             <ClassroomIcon /><p>Salones</p>
                         </Link>
                     </li>
                     <li>
-                        <Link to={ROUTES.dashboard.reservations} className="flex items-center gap-6 mb-1 p-4 hover:bg-gray-700 rounded-lg">
+                        <Link to={ROUTES.dashboard.reservations} className="flex items-center gap-6 mb-1 p-4 py-3 hover:bg-gray-700 rounded-lg">
                             <CalendarIcon /><p>Reservas</p>
                         </Link>
                     </li>
