@@ -51,16 +51,9 @@ function SessionState({ children }) {
   const handleLogOut = useCallback(() => {
     setLoading(true)
     setSession(null)
-    API_PROTOTYPES.auth.logout()
-      .catch((error) => {
-        console.log(error)
-      }).finally(() => {
-        setLoading(false)
-        AuthToken()
-          .then(() =>
-            navigate(ROUTES.auth.login)
-          )
-      })
+    guardarEnLocalStorage('session', null)
+    setLoading(false)
+    navigate(ROUTES.auth.login)
   }, [])
 
   const handleAuthVerify = useCallback(async () => {
