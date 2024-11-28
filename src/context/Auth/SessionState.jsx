@@ -32,7 +32,6 @@ function SessionState({ children }) {
       return error
     }
 
-
   }, [])
 
   const handleSignUp = useCallback(async (data) => {
@@ -70,6 +69,25 @@ function SessionState({ children }) {
     }
   }, [navigate])
 
+  const handleUpdate = useCallback(async (data) => {
+    try {
+      setLoading(true)
+      const response = await API_PROTOTYPES.auth.update(data)
+      setLoading(false)
+      if (response?.token) {
+        guardarEnLocalStorage('session', response)
+        alert('Datos actualizados')
+        console.log(response, 'response')
+        setSession(response)
+      }
+      return response
+    } catch (error) {
+      alert(error?.response.data.message)
+      setLoading(false)
+      return error
+    }
+  }, [])
+
 
   useEffect(() => {
     setLoading(true)
@@ -84,6 +102,7 @@ function SessionState({ children }) {
       handleSignUp,
       handleLogin,
       handleLogOut,
+      handleUpdate,
       loading_auth
     }}>
       {children}

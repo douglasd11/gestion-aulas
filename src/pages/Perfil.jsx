@@ -1,6 +1,49 @@
-import "../App.css";
+import { useState } from "react";
+
+import useSession from "../context/Auth/useSession";    
 
 const Perfil = () => {
+
+    const { session, handleUpdate } = useSession()
+    const {user} = session;
+
+    const nameF = session?.user?.name?.split(' ')[0];
+    const nameS = session?.user?.name?.split(' ')[1];
+
+    const letters = (nameF?.charAt(0) + (nameS ? nameS.charAt(0) : '')).toUpperCase();
+
+
+    const [name, setName] = useState(user.name);
+    const [email, setEmail] = useState(user.email);
+    const [role, setRole] = useState(user.role);
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [currentPassword, setCurrentPassword] = useState("");
+
+    const handleNameChange = (e) => setName(e.target.value);
+    const handleEmailChange = (e) => setEmail(e.target.value);
+    const handlePasswordChange = (e) => setPassword(e.target.value);
+    const handleConfirmPasswordChange = (e) => setConfirmPassword(e.target.value);
+    const handleCurrentPasswordChange = (e) => setCurrentPassword(e.target.value);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        if (password !== confirmPassword) {
+            alert("Las contraseñas no coinciden");
+            return;
+        }
+        handleUpdate({
+            uuid: user.uuid,
+            name,
+            email,
+            role,
+            password,
+            currentPassword
+        });
+
+    };
+
     return (
         <>
             <main className="flex-1 p-10">
@@ -10,20 +53,20 @@ const Perfil = () => {
                         <div className="flex flex-col justify-center items-center">
                             <div className="flex items-center justify-center size-40 bg-violet-600 rounded-full text-white">
                                 <p className="text-white text-6xl font-semibold">
-                                    WV
+                                    {letters}
                                 </p>
                             </div>
                             <div className="text-center mt-4">
                                 <h2 className="text-xl font-semibold text-gray-900">
-                                    User Name
+                                    {user.name}
                                 </h2>
                                 <p className="text-sm text-gray-600">
-                                    user@example.com
+                                    {user.email}
                                 </p>
                             </div>
                         </div>
                     </div>
-                    <form className="flex-1 space-y-5">
+                    <form className="flex-1 space-y-5" onSubmit={handleSubmit}>
                         
                         <div className="flex gap-4">
                             <div className="flex-1">
@@ -37,6 +80,8 @@ const Perfil = () => {
                                     type="text"
                                     name="name"
                                     id="name"
+                                    value={name}
+                                    onChange={handleNameChange}
                                     className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
                                 />
                             </div>
@@ -51,6 +96,8 @@ const Perfil = () => {
                                     type="email"
                                     name="email"
                                     id="email"
+                                    value={email}
+                                    onChange={handleEmailChange}
                                     className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
                                 />
                             </div>
@@ -67,6 +114,8 @@ const Perfil = () => {
                                     type="password"
                                     name="password"
                                     id="password"
+                                    value={password}
+                                    onChange={handlePasswordChange}
                                     className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
                                 />
                             </div>
@@ -81,6 +130,8 @@ const Perfil = () => {
                                     type="password"
                                     name="confirm-password"
                                     id="confirm-password"
+                                    value={confirmPassword}
+                                    onChange={handleConfirmPasswordChange}
                                     className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
                                 />
                             </div>
@@ -98,6 +149,8 @@ const Perfil = () => {
                                     type="password"
                                     name="current-password"
                                     id="current-password"
+                                    value={currentPassword}
+                                    onChange={handleCurrentPasswordChange}
                                     className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
                                 />
                             </div>
@@ -106,7 +159,7 @@ const Perfil = () => {
                         
                         <div>
                             <button
-                                type="button"
+                                type="submit"
                                 className="w-52 mt-4 bg-blue-500 text-white p-2 rounded-md shadow-sm hover:bg-blue-600"
                             >
                                 Guardar
