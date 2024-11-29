@@ -146,42 +146,7 @@ const HorarioB = () => {
                         </tbody>
                     </table>
                 ) : (
-                    <table className="min-w-full bg-white border border-gray-300">
-                        <thead>
-                            <tr className="bg-gray-200">
-                                <th className="py-2 px-4 border-b text-center bg-gray-200">
-                                    Piso
-                                </th>
-                                {[...Array(5)].map((_, index) => (
-                                    <th
-                                        key={index}
-                                        className="py-2 px-4 border-b text-center"
-                                    >
-                                        Salón {index + 1}
-                                    </th>
-                                ))}
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {[...Array(3)].map((_, rowIndex) => (
-                                <tr
-                                    key={rowIndex}
-                                    className="hover:bg-gray-100"
-                                >
-                                    {[...Array(6)].map((_, colIndex) => (
-                                        <td
-                                            key={colIndex}
-                                            className={`py-2 px-4 border-b text-center ${
-                                                colIndex === 0
-                                                    ? "bg-blue-200 text-blue-700 font-semibold"
-                                                    : ""
-                                            }`}
-                                        ></td>
-                                    ))}
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                    <></>
                 )}
             </main>
         </>

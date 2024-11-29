@@ -3,6 +3,7 @@ import App from "../App";
 import { ROUTES } from "../tools/CONSTANTS";
 import LoadComponent from "./LoadComponents";
 import SessionState from "../context/Auth/SessionState";
+import ReservationState from "../context/Reservation/ReservationState";
 
 // Mapa estático de rutas a módulos
 const componentMap = {
@@ -12,6 +13,7 @@ const componentMap = {
   "HorarioB": () => import("../pages/HorarioB"),
   "HorarioS": () => import("../pages/HorarioS"),
   "ReservaA": () => import("../pages/ReservaA"),
+  "ReservaU": () => import("../pages/ReservaU"),
   "Perfil": () => import("../pages/Perfil"),
 };
 
@@ -20,7 +22,9 @@ const router = [
     path: "/",
     element:
       <SessionState>
-        <Outlet />
+        <ReservationState>
+          <Outlet />
+        </ReservationState>
       </SessionState>,
     children: [
       {
@@ -51,7 +55,7 @@ const router = [
           },
           {
             path: ROUTES.dashboard.reservations,
-            element: <LoadComponent component="ReservaA" componentsMap={componentMap} loading={<>Cargando...</>} />,
+            element: <LoadComponent component="ReservaU" componentsMap={componentMap} loading={<>Cargando...</>} />,
           },
           {
             path: ROUTES.dashboard.profile,

@@ -32,7 +32,7 @@ function ColHead({
 
 ColHead.propTypes = {
     title: string.isRequired,
-    sortable: bool,
+    sortable: func,
     sortDirection: string,
     onSort: func
 }

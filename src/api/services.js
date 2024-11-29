@@ -47,4 +47,42 @@ export const API_PROTOTYPES = Object.freeze({
       }
     },
   }),
+  reservation: Object.freeze({
+    get: async (userId) => {
+      try {
+        const response = await axios.get(`/reservations/?userId=${userId}`);
+        return response.data;
+      } catch (error) {
+        console.error("Error en el inicio de sesión:", error);
+        throw error;
+      }
+    },
+    post: async (reservation) => {
+      try {
+        const response = await axios.post(`/reservation`, reservation);
+        return response.data;
+      } catch (error) {
+        console.error("Error en el inicio de sesión:", error);
+        throw error;
+      }
+    },
+    put: async (reservation) => {
+      try {
+        const response = await axios.put(`/reservation`, reservation);
+        return response.data;
+      } catch (error) {
+        console.error("Error en el inicio de sesión:", error);
+        throw error;
+      }
+    },
+    delete: async (reservationId) => {
+      try {
+        const response = await axios.delete(`/reservation/${reservationId}`);
+        return response.data;
+      } catch (error) {
+        console.error("Error en el inicio de sesión:", error);
+        throw error;
+      }
+    },
+  }),
 });

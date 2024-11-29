@@ -29,7 +29,7 @@ function Paginate({ data, setDataTable, limit }) {
     return (
         <div className="flex items-center justify-between p-3">
             <p className="block text-sm text-slate-500">
-                Page {currentPage} of {totalPages}
+                Pagina {currentPage} de {totalPages}
             </p>
             <div className="flex gap-1">
                 <button
@@ -38,7 +38,7 @@ function Paginate({ data, setDataTable, limit }) {
                     onClick={() => handlePageChange(currentPage - 1)}
                     disabled={currentPage === 1}
                 >
-                    Previous
+                    Anterior
                 </button>
                 <button
                     className="rounded border border-slate-300 py-2.5 px-3 text-center text-xs font-semibold text-slate-600 transition-all hover:opacity-75 focus:ring focus:ring-slate-300 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
@@ -46,7 +46,7 @@ function Paginate({ data, setDataTable, limit }) {
                     onClick={() => handlePageChange(currentPage + 1)}
                     disabled={currentPage === totalPages}
                 >
-                    Next
+                    Siguiente
                 </button>
             </div>
         </div>

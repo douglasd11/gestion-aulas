@@ -55,7 +55,7 @@ function Table({ config }) {
                     </div>
                 </div>
             </div>
-            <div className="p-0 overflow-scroll">
+            <div className="p-0">
                 <table className="w-full mt-4 text-left table-auto min-w-max">
                     <TableHead
                         cols={config.headers}
