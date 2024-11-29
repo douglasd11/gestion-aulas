@@ -2,7 +2,12 @@ import { useState } from "react";
 import "../App.css";
 import Info from "../components/Info";
 
+import { useNavigate } from "react-router-dom";
+
 const HorarioB = () => {
+
+    const navigate = useNavigate();
+
     const [bloque, setBloque] = useState("");
     const salonesPorBloque = {
         bloqueA: generateSalones("A"),
@@ -34,13 +39,16 @@ const HorarioB = () => {
 
     const handleClick = (codigo) => {
         alert(`Cargando horario del ${codigo}`);
+
+        navigate(`/week-room/${codigo}`);
+        
     };
 
     return (
         <>
             <main className="flex-1 p-10">
                 <div className="flex h-12 items-center">
-                    <h1 className="text-2xl font-bold">Horarios - Salones</h1>
+                    <h1 className="text-2xl font-semibold mr-1">Selecciona un salon o laboratorio</h1>
 
                     <Info>
                         <div className="p-3 w-72 bg-white">
@@ -53,9 +61,9 @@ const HorarioB = () => {
 
                 <label
                     htmlFor="bloque"
-                    className="block text-lg font-medium text-gray-700 mb-2"
+                    className="block text-base font-medium text-gray-700 mb-2 mt-3  "
                 >
-                    Selecciona un bloque:
+                    Escoge un bloque:
                 </label>
                 <select
                     id="bloque"
@@ -63,7 +71,7 @@ const HorarioB = () => {
                     onChange={handleChange}
                     className="block w-1/4 p-2 border border-blue-400 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 mb-4"
                 >
-                    <option value="">--Selecciona un bloque--</option>
+                    <option value="">---</option>
                     <option value="bloqueA">Bloque A</option>
                     <option value="bloqueB">Bloque B</option>
                     <option value="bloqueC">Bloque C</option>

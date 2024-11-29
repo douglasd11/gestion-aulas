@@ -4,7 +4,17 @@ import "../App.css";
 import Modal from "../components/modal/Modal";
 import useControlModal from "../hooks/useControlModal";
 
+import { Link, useParams } from "react-router-dom";
+import { ROUTES } from "../tools/CONSTANTS";
+
+import { useNavigate } from "react-router-dom";
+
+
 const HorarioS = () => {
+
+    const { id: idRoom } = useParams();
+    const navigate = useNavigate();
+
     const [reservasS, setReservas] = useState([
         {
             id: 1,
@@ -109,14 +119,33 @@ const HorarioS = () => {
         handleClose: () => {},
     });
 
-    console.log(horasSemana, "linea 35");
+    const handleConfirmReservations = () => {
+        console.log("Reservar", horasSeleccionadas);
+        closeModal();
+
+        navigate(ROUTES.dashboard.home);
+    }
+
+
 
     return (
         <>
             <main className="flex-1 p-10">
-                <h1 className="text-2xl font-bold mb-4">
-                    Horarios por semana --- Aula A202
-                </h1>
+                <div className="flex justify-between">
+                    <div>
+                        <h1 className="text-2xl font-semibold mb-2">
+                            Reserva {idRoom}
+                        </h1>
+
+                        <h2 className="text-xl font-medium mb-4">semana</h2>
+                    </div>
+                    <Link
+                        to={ROUTES.dashboard.rooms}
+                        className={"px-4 py-2 rounded h-10 text-white bg-slate-800"}
+                    >
+                        Regresar
+                    </Link>
+                </div>
 
                 <table className="table-auto w-full border border-gray-300">
                     <thead className="bg-gray-200">
@@ -187,7 +216,7 @@ const HorarioS = () => {
                     <div>
                         {horasSeleccionadas.length !== 0 && (
                             <>
-                                <h2 className="text-xl font-semibold mb-2">
+                                <h2 className="text-xl font-medium mb-2">
                                     Horas Seleccionadas:{" "}
                                     {horasSeleccionadas[0].dia}
                                 </h2>
@@ -220,7 +249,7 @@ const HorarioS = () => {
             <Modal
                 show={showModal}
                 onClose={closeModal}
-                title={"Reservar Espacio"}
+                title={"Reservar "+ idRoom}
                 info={"Confirma el horario seleccionado"}
             >
                 <div>
@@ -244,7 +273,7 @@ const HorarioS = () => {
                                 : "bg-green-500 text-white hover:bg-green-700"
                         }`}
                         disabled={horasSeleccionadas.length === 0}
-                        onClick={closeModal}
+                        onClick={handleConfirmReservations}
                     >
                         Confirmar Reserva
                     </button>
