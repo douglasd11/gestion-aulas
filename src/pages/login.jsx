@@ -48,7 +48,7 @@ const Login = () => {
                         className="w-full p-2 mb-1 mt3 border border-gray-300 rounded"
                     >
                         <option value="user">
-                            Usuario (Estudiante o Profesor)
+                            Usuario (Estudiante o Docente)
                         </option>
                         <option value="admin">Administrador</option>
                     </select>
