@@ -37,7 +37,7 @@ function Table({ config }) {
     
 
     return (
-        <div className="relative flex flex-col w-full h-full text-slate-700 bg-white shadow-md rounded-xl bg-clip-border">
+        <div className="relative flex flex-col w-full  text-slate-700 bg-white shadow-md rounded-xl bg-clip-border">
             <div className="relative mx-4 mt-4 overflow-hidden text-slate-700 bg-white rounded-none bg-clip-border">
                 <div className="flex items-center justify-between ">
                     <div>
@@ -79,7 +79,7 @@ function Table({ config }) {
             <Paginate 
                 data={config.data}
                 setDataTable={setDataTable}
-                limit={2}
+                limit={6}
             />
         </div>
     )

@@ -1,6 +1,6 @@
 import { any, func, number } from "../../tools/Types";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function Paginate({ data, setDataTable, limit }) {
     const [currentPage, setCurrentPage] = useState(1); // Página actual
@@ -21,6 +21,10 @@ function Paginate({ data, setDataTable, limit }) {
 
         setDataTable(pageData); // Actualizar los datos visibles
     };
+
+    useEffect(() => {
+        handlePageChange(currentPage)
+    }, []);	
 
     return (
         <div className="flex items-center justify-between p-3">
