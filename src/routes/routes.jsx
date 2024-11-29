@@ -10,6 +10,7 @@ const componentMap = {
   "Register": () => import("../pages/Register"),
   "Inicio": () => import("../pages/Inicio"),
   "HorarioB": () => import("../pages/HorarioB"),
+  "HorarioS": () => import("../pages/HorarioS"),
   "ReservaA": () => import("../pages/ReservaA"),
   "Perfil": () => import("../pages/Perfil"),
 };
@@ -43,6 +44,10 @@ const router = [
           {
             path: ROUTES.dashboard.rooms,
             element: <LoadComponent component="HorarioB" componentsMap={componentMap} loading={<>Cargando...</>} />,
+          },
+          {
+            path: ROUTES.dashboard.week+"/:id",
+            element: <LoadComponent component="HorarioS" componentsMap={componentMap} loading={<>Cargando...</>} />,
           },
           {
             path: ROUTES.dashboard.reservations,

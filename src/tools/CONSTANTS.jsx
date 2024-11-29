@@ -12,6 +12,7 @@ export const ROUTES = {
   dashboard: {
     home: "/",
     rooms: "/rooms",
+    week: "/week-room",
     reservations: "/reservations",
     profile: "/profile",
   },
