@@ -57,7 +57,7 @@ function SessionState({ children }) {
 
   const handleAuthVerify = useCallback(async () => {
     const session = await AuthToken()
-    const isAuthRute=window.location.pathname === ROUTES.auth.login || window.location.pathname === ROUTES.auth.register
+    const isAuthRute=window.location.pathname === ROUTES.auth.login || window.location.pathname === ROUTES.auth.register || window.location.pathname === ROUTES.auth.welcome
   
     if (isAuthRute && session) {
       setSession(session)
