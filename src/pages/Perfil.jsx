@@ -46,7 +46,7 @@ const Perfil = () => {
 
     return (
         <>
-            <main className="flex-1 p-10">
+            <main className="flex-1 p-10 bg-slate-50">
                 <h2 className="text-3xl font-medium px-8 mb-10">Configuracion de perfil</h2>
                 <div className="flex gap-20">
                     <div className="p-8">

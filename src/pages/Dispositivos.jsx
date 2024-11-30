@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../App.css";
 import Logo from "../assets/LogoIsoft.png";
+import Info from "../components/Info";
 
 const DispositivosAdmin = () => {
     const [dispositivos, setDispositivos] = useState([
@@ -60,13 +61,24 @@ const DispositivosAdmin = () => {
     );
 
     return (
-        <main className="flex-1 p-10">
-            <h1 className="text-2xl font-bold mb-4">Dispositivos IoT</h1>
+        <main className="flex-1 p-10 bg-slate-50">
+
+            <div className="flex gap-1">
+                <h1 className="text-2xl font-bold mb-4">Dispositivos IoT</h1>
+                <Info>
+                    <div className="p-3 w-72 bg-white">
+                        <p className="text-sm text-gray">
+                            Aquí se presentan los salones por su respectivo
+                        </p>
+                    </div>
+                </Info>
+            </div>
+            
             <div className="mb-4">
-                <h3 className="text-lg font-semibold">Selecciona un salón:</h3>
+                <h3 className="text-lg mb-2">Selecciona un salón:</h3>
                 <table className="min-w-full bg-white border border-gray-300">
                     <thead>
-                        <tr className="bg-gray-200">
+                        <tr className="bg-slate-200">
                             <th className="py-2 px-4 border-b border-gray-300">
                                 Bloque A
                             </th>
@@ -83,60 +95,60 @@ const DispositivosAdmin = () => {
                     </thead>
                     <tbody>
                         <tr>
-                            <td className="py-2 px-4 border-b border-gray-300">
+                            <td className="py-1 px-4 border-b border-gray-300">
                                 {salones.slice(0, 5).map((salon, index) => (
                                     <button
                                         key={index}
                                         onClick={() => handleSalonClick(salon)}
-                                        className={`block w-full text-left px-4 py-2 my-1 rounded ${
+                                        className={`block w-full text-left px-4 py-2 my-3 rounded ${
                                             salonSeleccionado === salon
                                                 ? "bg-blue-500 text-white"
-                                                : "bg-gray-300"
+                                                : "bg-gray-200"
                                         }`}
                                     >
                                         {salon}
                                     </button>
                                 ))}
                             </td>
-                            <td className="py-2 px-4 border-b border-gray-300">
+                            <td className="py-1 px-4 border-b border-gray-300">
                                 {salones.slice(5, 10).map((salon, index) => (
                                     <button
                                         key={index}
                                         onClick={() => handleSalonClick(salon)}
-                                        className={`block w-full text-left px-4 py-2 my-1 rounded ${
+                                        className={`block w-full text-left px-4 py-2 my-3 rounded ${
                                             salonSeleccionado === salon
                                                 ? "bg-blue-500 text-white"
-                                                : "bg-gray-300"
+                                                : "bg-gray-200"
                                         }`}
                                     >
                                         {salon}
                                     </button>
                                 ))}
                             </td>
-                            <td className="py-2 px-4 border-b border-gray-300">
+                            <td className="py-1 px-4 border-b border-gray-300">
                                 {salones.slice(10, 15).map((salon, index) => (
                                     <button
                                         key={index}
                                         onClick={() => handleSalonClick(salon)}
-                                        className={`block w-full text-left px-4 py-2 my-1 rounded ${
+                                        className={`block w-full text-left px-4 py-2 my-3 rounded ${
                                             salonSeleccionado === salon
                                                 ? "bg-blue-500 text-white"
-                                                : "bg-gray-300"
+                                                : "bg-gray-200"
                                         }`}
                                     >
                                         {salon}
                                     </button>
                                 ))}
                             </td>
-                            <td className="py-2 px-4 border-b border-gray-300">
+                            <td className="py-1 px-4 border-b border-gray-300">
                                 {salones.slice(15).map((salon, index) => (
                                     <button
                                         key={index}
                                         onClick={() => handleSalonClick(salon)}
-                                        className={`block w-full text-left px-4 py-2 my-1 rounded ${
+                                        className={`block w-full text-left px-4 py-2 my-3 rounded ${
                                             salonSeleccionado === salon
                                                 ? "bg-blue-500 text-white"
-                                                : "bg-gray-300"
+                                                : "bg-gray-200"
                                         }`}
                                     >
                                         {salon}
@@ -149,7 +161,7 @@ const DispositivosAdmin = () => {
             </div>
             {salonSeleccionado && (
                 <div>
-                    <h3 className="text-lg font-semibold">
+                    <h3 className="text-lg font-semibold mt-8">
                         Dispositivos en el salón {salonSeleccionado}:
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">

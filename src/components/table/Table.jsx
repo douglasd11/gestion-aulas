@@ -37,14 +37,14 @@ function Table({ config }) {
     
 
     return (
-        <div className="relative flex flex-col w-full  text-slate-700 bg-white shadow-md rounded-xl bg-clip-border">
-            <div className="relative mx-4 mt-4 overflow-hidden text-slate-700 bg-white rounded-none bg-clip-border">
+        <div className="relative flex flex-col w-full text-slate-900 bg-white shadow-sm border rounded-md bg-clip-border">
+            <div className="relative mx-4 mt-4 overflow-hidden text-slate-900 bg-white rounded-none bg-clip-border">
                 <div className="flex items-center justify-between ">
                     <div>
-                        <h3 className="text-lg font-semibold text-slate-800">
+                        <h3 className="text-lg font-semibold text-slate-900">
                             {config.title}
                         </h3>
-                        <p className="text-slate-500">
+                        <p className="text-slate-900">
                             {config.subTitle}
                         </p>
                     </div>

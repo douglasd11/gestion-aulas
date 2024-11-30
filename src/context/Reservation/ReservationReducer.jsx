@@ -2,12 +2,13 @@
 const ReservationReducer=(state, action) => {
     
     switch(action.type) {
-        // case TYPES.INSERTAR_CATEGORIA:
-        //     return {
-        //         ...state,
-        //         categoria: action.payload,
-        //         categorias: [...state.categorias, action.payload]
-        //     }
+
+        case "SET_RESERVATION":
+            return {
+                ...state,
+                reservation: action.payload,
+                reservations: [...state.reservations, action.payload]
+            }
         // case TYPES.OBTENER_CATEGORIA:
         //     return {
         //         ...state,

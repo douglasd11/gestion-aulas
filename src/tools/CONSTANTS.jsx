@@ -16,6 +16,7 @@ export const ROUTES = {
     week: "/week-room",
     reservations: "/reservations",
     profile: "/profile",
+    devices: "/devices",
   },
 };
 

@@ -16,6 +16,7 @@ const componentMap = {
   "ReservaA": () => import("../pages/ReservaA"),
   "ReservaU": () => import("../pages/ReservaU"),
   "Perfil": () => import("../pages/Perfil"),
+  "Dispositivos": () => import("../pages/Dispositivos"),
 };
 
 const router = [
@@ -30,15 +31,15 @@ const router = [
     children: [
       {
         path: ROUTES.auth.login,
-        element: <LoadComponent component="Login" componentsMap={componentMap} loading={<>Cargando...</>} />,
+        element: <LoadComponent component="Login" componentsMap={componentMap} loading={<></>} />,
       },
       {
         path: ROUTES.auth.register,
-        element: <LoadComponent component="Register" componentsMap={componentMap} loading={<>Cargando...</>} />,
+        element: <LoadComponent component="Register" componentsMap={componentMap} loading={<></>} />,
       },
       {
         path: ROUTES.auth.welcome,
-        element: <LoadComponent component="Portada" componentsMap={componentMap} loading={<>Cargando...</>} />,
+        element: <LoadComponent component="Portada" componentsMap={componentMap} loading={<></>} />,
       },
       {
         path: ROUTES.dashboard.home,
@@ -48,23 +49,27 @@ const router = [
         children: [
           {
             path: ROUTES.dashboard.home,
-            element: <LoadComponent component="Inicio" componentsMap={componentMap} loading={<>Cargando...</>} />,
+            element: <LoadComponent component="Inicio" componentsMap={componentMap} loading={<></>} />,
           },
           {
             path: ROUTES.dashboard.rooms,
-            element: <LoadComponent component="HorarioB" componentsMap={componentMap} loading={<>Cargando...</>} />,
+            element: <LoadComponent component="HorarioB" componentsMap={componentMap} loading={<></>} />,
           },
           {
             path: ROUTES.dashboard.week+"/:id",
-            element: <LoadComponent component="HorarioS" componentsMap={componentMap} loading={<>Cargando...</>} />,
+            element: <LoadComponent component="HorarioS" componentsMap={componentMap} loading={<></>} />,
           },
           {
             path: ROUTES.dashboard.reservations,
-            element: <LoadComponent component="ReservaU" componentsMap={componentMap} loading={<>Cargando...</>} />,
+            element: <LoadComponent component="ReservaU" componentsMap={componentMap} loading={<></>} />,
           },
           {
             path: ROUTES.dashboard.profile,
-            element: <LoadComponent component="Perfil" componentsMap={componentMap} loading={<>Cargando...</>}/>,
+            element: <LoadComponent component="Perfil" componentsMap={componentMap} loading={<></>}/>,
+          },
+          {
+            path: ROUTES.dashboard.devices,
+            element: <LoadComponent component="Dispositivos" componentsMap={componentMap} loading={<></>}/>,
           },
           {
             path: "*",

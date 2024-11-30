@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fontsource-variable/lexend": "^5.1.1",
+    "@fontsource-variable/saira": "^5.1.0",
     "@tabler/icons-react": "3.5.0",
     "autoprefixer": "10.4.20",
     "axios": "1.7.8",
@@ -18,6 +20,7 @@
     "react-dom": "18.3.1",
     "react-hook-form": "7.53.2",
     "react-router-dom": "6.28.0",
+    "react-sweetalert2": "^0.6.0",
     "react-tabs": "6.0.2",
     "use-form-validate": "^1.1.4"
   },

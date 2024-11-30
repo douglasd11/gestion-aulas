@@ -1,6 +1,6 @@
 export const CalendarIcon = (props) => (
     <svg
-        width="22" height="22" viewBox="0 0 448 512"
+        width="18" height="18" viewBox="0 0 448 512"
         fill={props?.fill || "white"}
         xmlns="http://www.w3.org/2000/svg" 
     >
@@ -23,7 +23,7 @@ export const ClassroomIcon = (props) => (
 
 export const HomeIcon = (props) => (
     <svg
-        width="22" height="22" viewBox="0 0 22 22"
+        width="18" height="18" viewBox="0 0 22 22"
         fill={props?.fill || "white"}
         xmlns="http://www.w3.org/2000/svg"
     >
@@ -31,6 +31,17 @@ export const HomeIcon = (props) => (
             d="M11 0C11 0 4.1954 6.52667 0.3927 10.0613C0.271643 10.1784 0.174117 10.3225 0.106461 10.4842C0.0388042 10.646 0.00253144 10.8217 0 11C0 11.3242 0.115892 11.635 0.322183 11.8642C0.528473 12.0935 0.808262 12.2222 1.1 12.2222H3.3V20.7778C3.3 21.1019 3.41589 21.4128 3.62218 21.642C3.82847 21.8712 4.10826 22 4.4 22H7.7C7.99174 22 8.27153 21.8712 8.47782 21.642C8.68411 21.4128 8.8 21.1019 8.8 20.7778V15.8889H13.2V20.7778C13.2 21.1019 13.3159 21.4128 13.5222 21.642C13.7285 21.8712 14.0083 22 14.3 22H17.6C17.8917 22 18.1715 21.8712 18.3778 21.642C18.5841 21.4128 18.7 21.1019 18.7 20.7778V12.2222H20.9C21.1917 12.2222 21.4715 12.0935 21.6778 11.8642C21.8841 11.635 22 11.3242 22 11C21.9985 10.8183 21.9597 10.6393 21.8867 10.4767C21.8137 10.3141 21.7084 10.172 21.5787 10.0613C17.8024 6.52667 11 0 11 0Z" 
             fill={props?.fill || "white"}
         />
+    </svg>
+);
+
+export const DeviceIcon = (props) => (
+    <svg 
+        width="18"  height="18"  viewBox="0 0 22 22"  
+        fill={props?.fill || "none"}   
+        xmlns="http://www.w3.org/2000/svg"   
+        stroke="currentColor"  strokeWidth="2"  strokeLinecap="round"  strokeLinejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-devices"
+    >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M13 9a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-6a1 1 0 0 1 -1 -1v-10z" /><path d="M18 8v-3a1 1 0 0 0 -1 -1h-13a1 1 0 0 0 -1 1v12a1 1 0 0 0 1 1h9" /><path d="M16 9h2" />
     </svg>
 );
 

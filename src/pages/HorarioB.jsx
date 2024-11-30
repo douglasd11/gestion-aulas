@@ -2,7 +2,8 @@ import { useState } from "react";
 import "../App.css";
 import Info from "../components/Info";
 
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { ROUTES } from "../tools/CONSTANTS";
 
 const HorarioB = () => {
 
@@ -46,17 +47,26 @@ const HorarioB = () => {
 
     return (
         <>
-            <main className="flex-1 p-10">
-                <div className="flex h-12 items-center">
-                    <h1 className="text-2xl font-semibold mr-1">Selecciona un salon o laboratorio</h1>
+            <main className="flex-1 p-10 bg-slate-50">
+                <div className="flex justify-between h-12 items-center">
+                    <div className="flex">
+                        <h1 className="text-2xl font-semibold mr-1">Selecciona un Salón o laboratorio</h1>
 
-                    <Info>
-                        <div className="p-3 w-72 bg-white">
-                            <p className="text-sm text-gray">
-                                Aquí se presentan los salones por su respectivo
-                            </p>
-                        </div>
-                    </Info>
+                        <Info>
+                            <div className="p-3 w-72 bg-white">
+                                <p className="text-sm text-gray">
+                                    Aquí se presentan los salones por su respectivo
+                                </p>
+                            </div>
+                        </Info>
+                    </div>
+                    <Link
+                        to={ROUTES.dashboard.reservations}
+                        className={"px-4 py-2 rounded h-10 text-white bg-slate-800 flex gap-2 items-center text-sm font-medium"}
+                    >
+                        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none" stroke="currentColor"  strokeWidth="2"  strokeLinecap="round"  strokeLinejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-back"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 11l-4 4l4 4m-4 -4h11a4 4 0 0 0 0 -8h-1" /></svg>
+                        Regresar
+                    </Link>
                 </div>
 
                 <label
@@ -79,9 +89,9 @@ const HorarioB = () => {
                 </select>
 
                 {bloque ? (
-                    <table className="min-w-full bg-white border border-gray-300">
+                    <table className="min-w-full bg-white border border-slate-300">
                         <thead>
-                            <tr className="bg-gray-200">
+                            <tr className="bg-slate-100">
                                 {bloque === "laboratorios" ? (
                                     salonesPorBloque[bloque][0].map(
                                         (lab, index) => (
@@ -95,7 +105,7 @@ const HorarioB = () => {
                                     )
                                 ) : (
                                     <>
-                                        <th className="py-2 px-4 border-b text-center bg-gray-200">
+                                        <th className="py-2 px-4 border-b text-center bg-slate-100">
                                             Piso
                                         </th>
                                         {[...Array(5)].map((_, index) => (

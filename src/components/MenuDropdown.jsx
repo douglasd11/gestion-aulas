@@ -46,14 +46,14 @@ const MenuDropdown = () => {
     });
 
     return (
-        <section className="bg-gray-2 py-20">
+        <section className="bg-gray-2">
             <div className="container">
                 <div className="flex justify-center">
                     <div className="relative inline-block">
                         <button
                             ref={trigger}
                             onClick={() => setDropdownOpen(!dropdownOpen)}
-                            className="mb-3.5 inline-flex h-12 items-center justify-center gap-2 rounded-lg border border-stroke bg-white px-6 py-3 text-base font-medium"
+                            className="inline-flex h-10 items-center justify-center gap-2 rounded-lg border border-stroke mr-4 bg-white px-4 text-base font-medium"
                         >
                             Cuenta
                             <span
@@ -62,8 +62,8 @@ const MenuDropdown = () => {
                                 }`}
                             >
                                 <svg
-                                    width="20"
-                                    height="20"
+                                    width="18"
+                                    height="18"
                                     viewBox="0 0 20 20"
                                     fill="none"
                                     xmlns="http://www.w3.org/2000/svg"
@@ -79,7 +79,7 @@ const MenuDropdown = () => {
                             ref={dropdown}
                             onFocus={() => setDropdownOpen(true)}
                             onBlur={() => setDropdownOpen(false)}
-                            className={`absolute right-0 top-full w-[240px] divide-y divide-stroke overflow-hidden rounded-lg bg-white ${
+                            className={`absolute right-0 top-full w-[240px] mr-4 z-50 mt-1 divide-y divide-stroke overflow-hidden border rounded-lg bg-white ${
                                 dropdownOpen ? "block" : "hidden"
                             }`}
                         >
@@ -100,11 +100,11 @@ const MenuDropdown = () => {
                             <div>
                                 <Link
                                     to={ROUTES.dashboard.profile}
-                                    className="flex w-full items-center justify-between px-4 py-2.5 text-sm font-medium hover:bg-gray-50"
+                                    className="flex w-full items-center justify-between px-4 py-2.5 text-sm font-medium hover:bg-gray-100"
                                 >
                                     Perfil
                                 </Link>
-                                <button className="flex w-full items-center justify-between px-4 py-2.5 text-sm font-medium hover:bg-gray-50">
+                                <button className="flex w-full items-center justify-between px-4 py-2.5 text-sm font-medium hover:bg-gray-100">
                                     Cerrar sesion
                                 </button>
                             </div>

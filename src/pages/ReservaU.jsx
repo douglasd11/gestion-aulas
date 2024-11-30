@@ -5,6 +5,7 @@ import { ROUTES } from "../tools/CONSTANTS";
 import { Link } from "react-router-dom";
 
 import ReservationContext from "../context/Reservation/ReservationContext";
+import Info from "../components/Info";
 
 const ReservaU = () => {
 
@@ -26,9 +27,19 @@ const ReservaU = () => {
 
     return (
         <>
-            <main className="flex-1 p-10">
-                <h1 className="text-2xl font-bold mb-4">Lista de reservas</h1>
-                <div className="overflow-x-auto mx-auto p-3">
+            <main className="flex-1 p-10 bg-slate-50">
+                <div className="flex gap-1 mb-4">
+                    <h1 className="text-2xl font-bold">Lista de reservas</h1>
+                    <Info>
+                        <div className="p-3 w-72 bg-white">
+                            <p className="text-sm text-gray">
+                                Aquí se presentan los salones por su respectivo
+                            </p>
+                        </div>
+                    </Info>
+                </div>
+                
+                <div className="overflow-x-auto mx-auto pt-4">
                     
                 <Table
                 config={{
@@ -44,54 +55,18 @@ const ReservaU = () => {
                                     View All
                                 </button> */}
                                 <Link to={ROUTES.dashboard.rooms}
-                                    className="flex select-none items-center gap-2 rounded bg-slate-800 py-2.5 px-4 text-sm font-semibold text-white shadow-md shadow-slate-900/10 transition-all hover:shadow-lg hover:shadow-slate-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                                    className="flex select-none items-center gap-2 rounded bg-blue-500 hover:bg-blue-700 py-2.5 px-4 text-sm font-semibold text-white shadow-md shadow-slate-900/10 transition-all hover:shadow-lg hover:shadow-slate-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                     type="button"
                                 >
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 24 24"
-                                        fill="currentColor"
-                                        aria-hidden="true"
-                                        strokeWidth="2"
-                                        className="w-4 h-4"
-                                    >
-                                        <path d="M6.25 6.375a4.125 4.125 0 118.25 0 4.125 4.125 0 01-8.25 0zM3.25 19.125a7.125 7.125 0 0114.25 0v.003l-.001.119a.75.75 0 01-.363.63 13.067 13.067 0 01-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 01-.364-.63l-.001-.122zM19.75 7.5a.75.75 0 00-1.5 0v2.25H16a.75.75 0 000 1.5h2.25v2.25a.75.75 0 001.5 0v-2.25H22a
-                                                    .75.75 0 000-1.5h-2.25V7.5z"></path>
-                                    </svg>
-                                    Nueva reserva
+                                    <svg  xmlns="http://www.w3.org/2000/svg"  width="20"  height="20"  viewBox="0 0 24 24"  fill="currentColor"  class="icon icon-tabler icons-tabler-filled icon-tabler-calendar"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M16 2a1 1 0 0 1 .993 .883l.007 .117v1h1a3 3 0 0 1 2.995 2.824l.005 .176v12a3 3 0 0 1 -2.824 2.995l-.176 .005h-12a3 3 0 0 1 -2.995 -2.824l-.005 -.176v-12a3 3 0 0 1 2.824 -2.995l.176 -.005h1v-1a1 1 0 0 1 1.993 -.117l.007 .117v1h6v-1a1 1 0 0 1 1 -1zm3 7h-14v9.625c0 .705 .386 1.286 .883 1.366l.117 .009h12c.513 0 .936 -.53 .993 -1.215l.007 -.16v-9.625z" /><path d="M12 12a1 1 0 0 1 .993 .883l.007 .117v3a1 1 0 0 1 -1.993 .117l-.007 -.117v-2a1 1 0 0 1 -.117 -1.993l.117 -.007h1z" /></svg>
+                                    Nueva Reserva
                                 </Link>
                             </>
                         )
                     },
-                    data: [
-                        {
-                            name: "A101",
-                            reservationDate: "2021-10-05",
-                            startTime: "1:00",
-                            endTime: "4:00",
-                            reservationReason: "Reunion de trabajo",
-                            status: "Pendiente",
-                        },
-                        {
-                            name: "A102",
-                            reservationDate: "2021-10-05",
-                            startTime: "1:00",
-                            endTime: "2:00",
-                            reservationReason: "Reunion de trabajo",
-                            status: "Pendiente",
-                        },
-                        {
-                            name: "A103",
-                            reservationDate: "2021-10-05",
-                            startTime: "1:00",
-                            endTime: "3:00",
-                            reservationReason: "Reunion de trabajo",
-                            status: "Pendiente",
-                        },
-                       
-                    ],
+                    data: reservations,
                     headers: [
-                        { key: "name", label: "Espacio", type: "chip", chipCondition: "" },
+                        { key: "spaceId", label: "Espacio", type: "chip", chipCondition: "" },
                         { key: "reservationDate", label: "Fecha", type: "date" },
                         { key: "startTime", label: "Hora inicio", type: "text" },
                         { key: "endTime", label: "Hora salida", type: "text" },
@@ -101,7 +76,7 @@ const ReservaU = () => {
                     ],
                     actions: [
                         {
-                            icon: <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  strokeWidth="2"  strokeLinecap="round"  strokeLinejoin="round"  className="icon icon-tabler icons-tabler-outline icon-tabler-trash"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 7l16 0" /><path d="M10 11l0 6" /><path d="M14 11l0 6" /><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" /><path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" /></svg>,
+                            icon: <svg xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  strokeWidth="2"  strokeLinecap="round"  strokeLinejoin="round"  className="icon icon-tabler icons-tabler-outline icon-tabler-trash"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 7l16 0" /><path d="M10 11l0 6" /><path d="M14 11l0 6" /><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" /><path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" /></svg>,
                             onClick: () => console.log("Delete"),
                         },
                     ], 

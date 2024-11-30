@@ -16,7 +16,7 @@ function Col({ data, type = "text", chipCondition }) {
                             <p className="text-sm font-semibold text-slate-700">
                                 {data.title}
                             </p>
-                            <p className="text-sm text-slate-500">
+                            <p className="text-sm text-slate-700">
                                 {data.subtitle}
                             </p>
                         </div>
@@ -26,7 +26,7 @@ function Col({ data, type = "text", chipCondition }) {
             {
                 type === "text" && (
                     <td className="p-4 border-b border-slate-200">
-                        <p className="text-sm text-slate-500">
+                        <p className="text-sm text-slate-700">
                             {data.toString()}
                         </p>
                     </td>
@@ -62,7 +62,7 @@ function Col({ data, type = "text", chipCondition }) {
             {
                 type === "date" && (
                     <td className="p-4 border-b border-slate-200">
-                        <p className="text-sm text-slate-500">
+                        <p className="text-sm text-slate-700">
                             {data.toString()}
                         </p>
                     </td>
@@ -81,7 +81,7 @@ function Col({ data, type = "text", chipCondition }) {
                                 <p className="text-sm font-semibold text-slate-700">
                                     {data.name || "John Michael"}
                                 </p>
-                                <p className="text-sm text-slate-500">
+                                <p className="text-sm text-slate-700">
                                     {data.email || "john@creative-tim.com"}
                                 </p>
                             </div>

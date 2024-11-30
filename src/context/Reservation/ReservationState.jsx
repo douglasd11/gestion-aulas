@@ -15,7 +15,6 @@ const ReservationState = ({ children }) => {
     const { session } = useSession()
 
     
-    
     const initialState = {
         reservation: null,
         reservations: []
@@ -24,19 +23,22 @@ const ReservationState = ({ children }) => {
     const [state, dispatch] = useReducer(ReservationReducer, initialState);
 
 
-    // const insertCategoria = async (data) => {
-    //     try {
-    //         const respuesta = await API_PROTOTYPES.categorias.post(data);
-    //         showMessage(respuesta)
-
-    //         dispatch({
-    //             type: TYPES.INSERTAR_CATEGORIA,
-    //             payload: respuesta.data
-    //         })
-    //     } catch (error) {
-    //         showMessage(error.response.data)
-    //     }
-    // }
+    const insertReservation = async (data) => {
+        try {
+            console.log(data);
+            const respuesta = await API_PROTOTYPES.reservation.post(data);
+            
+            console.log(respuesta)
+            
+            dispatch({
+                type: "SET_RESERVATION",
+                payload: respuesta.reservation
+            })
+        } catch (error) {
+            console.log(error)
+            // showMessage(error.response.data)
+        }
+    }
 
     // const getCategoria = async (id) => {
     //     try {
@@ -99,7 +101,7 @@ const ReservationState = ({ children }) => {
 
     useEffect(() => {
         if (session){
-            const userId = "3266"
+            const userId = session.user.id ? session.user.id : session.user.uuid;
             getReservatios(userId)
         }
     }, [session]);
@@ -109,8 +111,8 @@ const ReservationState = ({ children }) => {
             value={{
                 reservation: state.reservation,
                 reservations: state.reservations,
-                // insertCategoria,
                 // getCategoria,
+                insertReservation,
                 getReservatios,
                 // updateCategoria,
                 // deleteCategoria
