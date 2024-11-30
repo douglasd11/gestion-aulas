@@ -6,6 +6,7 @@ export const ROL = {
 
 export const ROUTES = {
   auth: {
+    welcome: "/welcome",
     login: "/auth",
     register: `/auth/register`,
   },

@@ -9,6 +9,7 @@ import ReservationState from "../context/Reservation/ReservationState";
 const componentMap = {
   "Login": () => import("../pages/Login"),
   "Register": () => import("../pages/Register"),
+  "Portada": () => import("../pages/Portada"),
   "Inicio": () => import("../pages/Inicio"),
   "HorarioB": () => import("../pages/HorarioB"),
   "HorarioS": () => import("../pages/HorarioS"),
@@ -34,6 +35,10 @@ const router = [
       {
         path: ROUTES.auth.register,
         element: <LoadComponent component="Register" componentsMap={componentMap} loading={<>Cargando...</>} />,
+      },
+      {
+        path: ROUTES.auth.welcome,
+        element: <LoadComponent component="Portada" componentsMap={componentMap} loading={<>Cargando...</>} />,
       },
       {
         path: ROUTES.dashboard.home,
