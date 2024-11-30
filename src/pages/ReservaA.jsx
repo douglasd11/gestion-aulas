@@ -126,10 +126,10 @@ const ReservaA = () => {
                             <div>{renderReservas("solicitud")}</div>
                         </TabPanel>
                         <TabPanel>
-                            <div>{renderReservas("activa")}</div>
+                            <div>{renderReservas("Activa")}</div>
                         </TabPanel>
                         <TabPanel>
-                            <div>{renderReservas("rechazada")}</div>
+                            <div>{renderReservas("Rechazada")}</div>
                         </TabPanel>
                     </Tabs>
                 </div>
