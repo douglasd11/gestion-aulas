@@ -72,11 +72,11 @@ function Register() {
           />
           <p className="text-red-500">{getFieldError("password")}</p>
           <select
-            {...getFieldProps("role", { required: true },undefined,'estudiante')}
+            {...getFieldProps("role", { required: true },undefined,'usuario')}
             className={`w-full p-2 mb-1 mt-3 border ${errors['rol'] ? 'border-red-500' : 'border-gray-300'}  rounded`}
           >
-            <option value="profesor">Profesor</option>
-            <option value="estudiante">Estudiante</option>
+            <option value="usuario">Estudiante/Profesor</option>
+            <option value="administrativo">administrativo</option>
           </select>
           <p className="text-red-500">{getFieldError("rol")}</p>
 

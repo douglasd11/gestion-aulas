@@ -19,11 +19,11 @@ const ReservationReducer=(state, action) => {
                 ...state,
                 reservations: action.payload
             }
-        // case TYPES.ACTUALIZAR_CATEGORIA:
-        //     return {
-        //         ...state,
-        //         categorias: state.categorias.map(categoria => categoria.id === action.payload.id ? action.payload : categoria)
-        //     }
+        case "UPDATE_RESERVATION":
+            return {
+                ...state,
+                reservations: state.reservations.map(reservation => reservation.id === action.payload.id ? action.payload : reservation)
+            }
         // case TYPES.ELIMINAR_CATEGORIA:
         //     return {
         //         ...state,

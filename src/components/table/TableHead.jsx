@@ -18,7 +18,7 @@ function TableHead({ cols, actions, actionsConfig,sortable }) {
                 }
                 {
                     actions && <th className="p-4 transition-colors cursor-pointer border-y border-slate-200 bg-slate-50 hover:bg-slate-100">
-                        <p className="flex items-center justify-between gap-2 font-sans text-sm  font-normal leading-none text-slate-500">
+                        <p className="flex items-center justify-between gap-2 font-sans text-sm font-medium leading-none text-black">
                            {
                             actionsConfig.label || " Acciones"
                            }

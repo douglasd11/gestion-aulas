@@ -52,12 +52,13 @@ const ReservationState = ({ children }) => {
     //     }
     // }
 
-    const getReservatios = async (userId) => {
+    const getReservation = async (userId) => {
         try {
 
+            console.log(userId, "linea 58")
             const respuesta = await API_PROTOTYPES.reservation.get(userId);
 
-            console.log(respuesta)
+            console.log(respuesta, "aca")
             
             dispatch({
                 type: "GET_RESERVATIONS",
@@ -66,24 +67,27 @@ const ReservationState = ({ children }) => {
             
 
         } catch (error) {
-            // showMessage(error.response.data)
             console.log(error)
         }
     }
 
-    // const updateCategoria = async (data) => {
-    //     try {
-    //         const respuesta = await API_PROTOTYPES.categorias.put(data);
-    //         showMessage(respuesta)
+    const updateReservation = async (data) => {
+        try {
+            const respuesta = await API_PROTOTYPES.reservation.put(data);
 
-    //         dispatch({
-    //             type: TYPES.ACTUALIZAR_CATEGORIA,
-    //             payload: respuesta.data
-    //         })
-    //     } catch (error) {
-    //         showMessage(error.response.data)
-    //     }
-    // }
+            console.log(respuesta, "linea 77")
+
+            if (respuesta.reservation !== null){
+                dispatch({
+                    type: "UPDATE_RESERVATION",
+                    payload: respuesta.reservation
+                })
+            }
+            
+        } catch (error) {
+            console.log(error)
+        }   
+    }
 
     // const deleteCategoria = async (id) => {
     //     try {
@@ -102,7 +106,7 @@ const ReservationState = ({ children }) => {
     useEffect(() => {
         if (session){
             const userId = session.user.id ? session.user.id : session.user.uuid;
-            getReservatios(userId)
+            getReservation(userId)
         }
     }, [session]);
 
@@ -113,9 +117,8 @@ const ReservationState = ({ children }) => {
                 reservations: state.reservations,
                 // getCategoria,
                 insertReservation,
-                getReservatios,
-                // updateCategoria,
-                // deleteCategoria
+                getReservation,
+                updateReservation,
             }}
         >
             {children}

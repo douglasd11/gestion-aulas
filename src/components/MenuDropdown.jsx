@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const MenuDropdown = () => {
 
-    const { session } = useSession()
+    const { session, handleLogOut } = useSession()
 
     const nameF = session?.user?.name?.split(' ')[0];
     const capitalizedFirstName = nameF?.charAt(0).toUpperCase() + nameF?.slice(1).toLowerCase();
@@ -104,7 +104,7 @@ const MenuDropdown = () => {
                                 >
                                     Perfil
                                 </Link>
-                                <button className="flex w-full items-center justify-between px-4 py-2.5 text-sm font-medium hover:bg-gray-100">
+                                <button onClick={handleLogOut} className="flex w-full items-center justify-between px-4 py-2.5 text-sm font-medium hover:bg-gray-100">
                                     Cerrar sesion
                                 </button>
                             </div>
