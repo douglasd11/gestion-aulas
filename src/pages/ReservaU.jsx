@@ -12,8 +12,6 @@ const ReservaU = () => {
     const { session } = useSession();
     const { reservations, updateReservation } = useContext(ReservationContext);
 
-    console.log(reservations);
-
     // const [reservas, setReservas] = useState([
     //     { dia: "Lunes", hora: "8:00", salon: "A101" },
     //     { dia: "Martes", hora: "9:00", salon: "B202" },

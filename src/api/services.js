@@ -20,6 +20,15 @@ export const API_PROTOTYPES = Object.freeze({
         throw error;
       }
     },
+    getAll: async () => {
+      try {
+        const response = await axios.get(`/users`);
+        return response.data;
+      } catch (error) {
+        console.error("Error en el inicio de sesión:", error);
+        throw error;
+      }
+    },
     logout: async () => {
       try {
         const response = await axios.get(`/logout`);
@@ -51,6 +60,15 @@ export const API_PROTOTYPES = Object.freeze({
     get: async (userId) => {
       try {
         const response = await axios.get(`/reservations/?userId=${userId}`);
+        return response.data;
+      } catch (error) {
+        console.error("Error en el inicio de sesión:", error);
+        throw error;
+      }
+    },
+    getAll: async () => {
+      try {
+        const response = await axios.get(`/reservations`);
         return response.data;
       } catch (error) {
         console.error("Error en el inicio de sesión:", error);

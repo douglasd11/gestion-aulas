@@ -40,18 +40,6 @@ const ReservationState = ({ children }) => {
         }
     }
 
-    // const getCategoria = async (id) => {
-    //     try {
-    //         const res = await API_PROTOTYPES.categorias.get(id);
-    //         dispatch({
-    //             type: TYPES.OBTENER_CATEGORIA,
-    //             payload: res.data
-    //         })
-    //     } catch (error) {
-    //         showMessage(error.response.data)
-    //     }
-    // }
-
     const getReservation = async (userId) => {
         try {
 
@@ -66,6 +54,33 @@ const ReservationState = ({ children }) => {
             })
             
 
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const getAllReservations = async () => {
+        try {
+            let respuesta = await API_PROTOTYPES.reservation.getAll();
+            const users = await API_PROTOTYPES.auth.getAll();
+
+            respuesta = {
+                ...respuesta,
+                reservations: respuesta.reservations.map(reservation => {
+                    const user = users.find(user => user.id === reservation.userId);
+                    return {
+                        ...reservation,
+                        userName: user ? user.name : 'Unknown'
+                    };
+                })
+            };
+
+            console.log(respuesta)
+            
+            dispatch({
+                type: "GET_RESERVATIONS",
+                payload: respuesta.reservations
+            })
         } catch (error) {
             console.log(error)
         }
@@ -119,6 +134,7 @@ const ReservationState = ({ children }) => {
                 insertReservation,
                 getReservation,
                 updateReservation,
+                getAllReservations
             }}
         >
             {children}
