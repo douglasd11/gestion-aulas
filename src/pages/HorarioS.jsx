@@ -13,6 +13,8 @@ import ReservationContext from "../context/Reservation/ReservationContext";
 import useSession from "../context/Auth/useSession";
 import SweetAlert2 from "react-sweetalert2";
 
+import { parseISO } from 'date-fns';
+
 
 const HorarioS = () => {
 
@@ -21,10 +23,13 @@ const HorarioS = () => {
 
     const { session } = useSession()
     const { reservations, insertReservation } = useContext(ReservationContext);
+
     const [swalProps, setSwalProps] = useState({});
+    const [alertKey, setAlertKey] = useState(0); // Key para forzar el re-render
 
 
     const [motivo, setMotivo] = useState("");
+    const [tipoReserva, setTipoReserva] = useState("normal");
     const [fechaSeleccionada, setFechaSeleccionada] = useState();
 
     const [pivoteWeek, setPivoteWeek] = useState(0);
@@ -34,22 +39,34 @@ const HorarioS = () => {
     const [currentYear, setCurrentYear] = useState(0);
     const [currentDay, setCurrentDay] = useState(0);
 
-    console.log("Reservas:", reservations);
+
+    function normalizeDateString(dateString) {
+        const parts = dateString.split('-');
+        const [year, month, day] = parts;
+    
+        const normalizedYear = year.padStart(4, '0');
+        const normalizedMonth = month.padStart(2, '0');
+        const normalizedDay = day.padStart(2, '0');
+
+        return `${normalizedYear}-${normalizedMonth}-${normalizedDay}`;
+    }
 
     const transformData = (reservations) => {
 
-        let reservationsFiltered = reservations.filter(reservation => reservation.spaceId === idRoom);
+        let reservationsFiltered = reservations.filter(reservation => reservation.spaceId === idRoom && reservation.status === "pendiente");
 
         return reservationsFiltered.map((reservation, index) => {
             const startHour = parseInt(reservation.startTime.split(":")[0]);
             const endHour = parseInt(reservation.endTime.split(":")[0]);
             const horas = [];
-            for (let i = startHour; i < endHour; i++) {
+            for (let i = startHour; i <= endHour; i++) {
                 horas.push(`${i}:00`);
             }
-    
-            const reservationDate = new Date(reservation.reservationDate);
-            reservationDate.setDate(reservationDate.getDate() + 1);
+
+            const reservationDate = parseISO(normalizeDateString(reservation.reservationDate));
+            console.log(reservationDate, "fecha", reservation.reservationDate);
+
+            // reservationDate.setDate(reservationDate.getDate());
             return {
                 id: reservation.id, // Usar el índice como ID
                 horas,
@@ -57,32 +74,30 @@ const HorarioS = () => {
                 salon: reservation.spaceId,
                 bloque: reservation.spaceId[0], // Usar la primera letra de spaceId como bloque
                 numeroDia: reservationDate.getDate(),
+                tipo: reservation.reservationType,
+                razon: reservation.reservationReason,
             };
         });
     };
 
-    const [reservasS, setReservas] = useState(transformData(reservations));
+    
+
+    const [reservasS, setReservas] = useState([]);
+    
     console.log("Reservas transformadas:", reservasS);
 
-    const currentDate = new Date();
-    // const currentMonth = currentDate.getMonth() + 1;
+    useEffect(() => {
+        setReservas(transformData(reservations));
+    }, [reservations]);
 
     const monthNames = [
         "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
         "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
     ];
 
-    // const currentMonthName = monthNames[currentMonth - 1];
-    // const currentYear = currentDate.getFullYear();
-    // const currentDay = currentDate.getDate();
-
-    //console.log("Fecha actual:", currentDay);
-
 
     const getCurrentWeekDays = () => {
         let currentDate = new Date();
-
-        //console.log(pivoteWeek, "pivoteweek");
         
         currentDate.setDate(currentDate.getDate() + (pivoteWeek*7));
 
@@ -95,23 +110,16 @@ const HorarioS = () => {
         if (firstDayOfWeek < 1) {
             currentDate.setMonth(currentDate.getMonth() - 1);
             const daysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
-            //console.log(daysInMonth, "Días en el mes");
-           
-            //console.log(daysInMonth, firstDayOfWeek, "ACAAA 2");
 
             firstDayOfWeek = daysInMonth + firstDayOfWeek;
         }
 
-        //console.log(currentDate.getDate(), (currentDate.getDay() + 1), "TODO");
-        //console.log(firstDayOfWeek, "Resultado");
-
-
         const weekDays = [];
 
-        // pendiente depurar
+        // pendiente depurar bug
         for (let i = 0; i < 5; i++) {
             const day = new Date(currentDate.setDate(parseInt(firstDayOfWeek) + i));
-            //console.log(day, (firstDayOfWeek+i), "Día de la semana");
+
             weekDays.push({
                 day: day.toLocaleString("es-ES", { weekday: "long" }).toUpperCase().slice(0, 3),
                 date: day.getDate(),
@@ -122,10 +130,6 @@ const HorarioS = () => {
 
         return weekDays;
     };
-
-    // currentWeekDays = getCurrentWeekDays();
-    // console.log("Días de la semana actual:", currentWeekDays);
-
 
 
     const [horasSeleccionadas, setHorasSeleccionadas] = useState([]);
@@ -154,11 +158,20 @@ const HorarioS = () => {
 
     const handleClick = (hora, dia, fecha, reserva) => {
         if (reserva) {
-            alert(
-                `No se pueden seleccionar horas con reserva - Hora: ${hora}, Día: ${dia} ${fecha.date}`
-            );
-            setHorasSeleccionadas([]);
-            setFechaSeleccionada(null);
+
+            setSwalProps({
+                show: true,
+                title: "Info!",
+                text: `No se pueden seleccionar horas con reserva`,
+                icon: "info",
+                confirmButtonText: "Aceptar",
+                onResolve: () => {
+                    setHorasSeleccionadas([]);
+                    setFechaSeleccionada(null);
+                },
+            });
+            setAlertKey(alertKey + 1);
+            
             return;
         }
 
@@ -224,7 +237,7 @@ const HorarioS = () => {
         endTime: horasSeleccionadas[horasSeleccionadas.length - 1].hora,
         reservationReason: motivo !== "" ? motivo : "No especificado",
         status: "pendiente",
-        reservationType: "normal",
+        reservationType: tipoReserva,
       });
   
       setSwalProps({
@@ -237,15 +250,14 @@ const HorarioS = () => {
           navigate(ROUTES.dashboard.reservations);
         },
       });
+      
     };
 
     useEffect(() => {
         setCurrentWeekDays(getCurrentWeekDays());
-        console.log("Días de la semana actual:", currentWeekDays);
+        // console.log("Días de la semana actual:", currentWeekDays);
 
     }, [pivoteWeek]);
-
-    // console.log("prueba: ", currentWeekDays[0]?.month - 1)
 
 
     return (
@@ -315,12 +327,13 @@ const HorarioS = () => {
                                     "jueves",
                                     "viernes",
                                 ].map((dia, index) => {
+                                    // console.log(reservasS, "antes del filtro")
                                     const reserva = reservasS.find(
                                         (reserva) =>
                                             reserva.horas.includes(
                                                 `${7 + i}:00`
-                                            ) && reserva.dia === dia &&
-                                            reserva.numeroDia === currentWeekDays[index]?.date
+                                            ) && reserva.dia === dia && 
+                                            (reserva.tipo === "recurrente" || reserva.numeroDia === currentWeekDays[index]?.date)
                                     );
                                     const isSelected = horasSeleccionadas.some(
                                         (hora) =>
@@ -339,13 +352,13 @@ const HorarioS = () => {
                                                 )
                                             }
                                             className={`border px-4 py-2 cursor-pointer hover:bg-gray-100 ${
-                                                reserva ? "bg-green-400" : ""
+                                                reserva?.tipo === "normal" ? "bg-green-300" : reserva?.tipo === "recurrente" ? "bg-blue-300" : ""
                                             } ${
                                                 isSelected ? "bg-slate-300" : ""
                                             }`}
                                         >
                                             {reserva
-                                                ? `Reserva ${reserva?.id.slice(0, 8)}`
+                                                ? `${reserva?.tipo === "normal" ? 'Reserva' : '' } ${reserva?.id.slice(0, 4).toUpperCase()} - ${reserva?.razon}`
                                                 : ""}
                                             {isSelected ? "Seleccionada" : ""}
                                         </td>
@@ -398,7 +411,6 @@ const HorarioS = () => {
                 info={""}
             >
                 <div>
-                    {/* {console.log("Horas seleccionadas", horasSeleccionadas)} */}
                     <p className="mb-4">Confirma el horario seleccionado</p>
                     <h2 className="font-medium mb-2">
                         Horas Seleccionadas: {horasSeleccionadas[0]?.dia}
@@ -410,6 +422,21 @@ const HorarioS = () => {
                             </li>
                         ))}
                     </ul>
+
+                    { session?.user.role === "administrativo" && ( 
+                        <div className="mt-8">
+                            <label htmlFor="">Tipo de reserva</label>
+                            <select
+                                className="w-full border border-gray-300 rounded p-2 px-3 mt-1"
+                                value={tipoReserva}
+                                onChange={(e) => setTipoReserva(e.target.value)}
+                            >
+                                <option value="normal">Normal</option>
+                                <option value="recurrente">Recurrente</option>
+                            </select>
+                        </div>
+                        )
+                    }
 
                     <div className="mt-5">
                         <label htmlFor="">Motivo de reserva</label>
@@ -438,7 +465,7 @@ const HorarioS = () => {
                 </div>
             </Modal>
 
-            <SweetAlert2 {...swalProps} />
+            <SweetAlert2 key={alertKey} {...swalProps} />
         </>
     );
 };

@@ -1,11 +1,16 @@
 import { useState } from "react";
 
+import SweetAlert2 from "react-sweetalert2";
+
 import useSession from "../context/Auth/useSession";    
 
 const Perfil = () => {
 
     const { session, handleUpdate } = useSession()
     const {user} = session;
+
+    const [swalProps, setSwalProps] = useState({});
+    const [alertKey, setAlertKey] = useState(0); // Key para forzar el re-render
 
     const nameF = session?.user?.name?.split(' ')[0];
     const nameS = session?.user?.name?.split(' ')[1];
@@ -30,17 +35,41 @@ const Perfil = () => {
         e.preventDefault();
 
         if (password !== confirmPassword) {
-            alert("Las contraseñas no coinciden");
+            setSwalProps({
+                show: true,
+                title: "Error",
+                text: "Las contraseñas no coinciden",
+                icon: "error",
+                onResolve: () => {
+                    setSwalProps({
+                        show: false,
+                    });
+                },
+            });
+
             return;
         }
         handleUpdate({
-            uuid: user.uuid,
+            id: user.id,
             name,
             email,
             role,
             password,
             currentPassword
         });
+
+        setSwalProps({
+            show: true,
+            title: "Perfil actualizado",
+            text: "Tu perfil ha sido actualizado correctamente",
+            icon: "success",
+            onResolve: () => {
+                setSwalProps({
+                    show: false,
+                });
+            },
+        });
+
 
     };
 
@@ -168,6 +197,7 @@ const Perfil = () => {
                     </form>
                 </div>
             </main>
+            <SweetAlert2 key={alertKey} {...swalProps} />
         </>
     );
 };

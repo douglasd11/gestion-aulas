@@ -37,7 +37,7 @@ function Col({ data, type = "text", chipCondition }) {
                     <td className="p-4 border-b border-slate-200">
                         <div className="w-max">
                             {
-                                (chipCondition && chipCondition !== data.toString()) ?
+                                (chipCondition && 'Cancelada' === data.toString()) ?
                                     (
                                         <div className="relative grid items-center px-2 py-1 font-sans text-xs font-bold text-gray-900 uppercase rounded-md select-none whitespace-nowrap bg-red-200">
                                             <span className="">
@@ -45,15 +45,20 @@ function Col({ data, type = "text", chipCondition }) {
                                             </span>
                                         </div>
                                     )
-                                    : (
-                                        <div className="relative grid items-center px-2 py-1 font-sans text-xs font-bold text-green-900 uppercase rounded-md select-none whitespace-nowrap bg-green-500/20">
-                                            <span className="">
-                                                {data.toString()}
-                                            </span>
-                                        </div>
+                                    : ('pendiente' === data.toString() ? (
+                                            <div className="relative grid items-center px-2 py-1 font-sans text-xs font-bold text-green-900 uppercase rounded-md select-none whitespace-nowrap bg-green-500/20">
+                                                <span className="">
+                                                    {data.toString()}
+                                                </span>
+                                            </div>
+                                        ) : (
+                                            <div className="relative grid items-center px-2 py-1 font-sans text-xs font-bold text-slate-100 uppercase rounded-md select-none whitespace-nowrap bg-slate-500">
+                                                <span className="">
+                                                    {data.toString()}
+                                                </span>
+                                            </div>
+                                        )
                                     )
-
-
                             }
                         </div>
                     </td>

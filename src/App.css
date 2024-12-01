@@ -4,6 +4,9 @@
 }
 
 
+.react-tabs__tab-list{
+  margin: 0 !important;
+}
 
 /* Modal styles */
 

@@ -25,28 +25,54 @@ const ReservationState = ({ children }) => {
 
     const insertReservation = async (data) => {
         try {
+            const parts = data.reservationDate.split('-');
+            const [year, month, day] = parts;
+        
+            const normalizedYear = year.padStart(4, '0');
+            const normalizedMonth = month.padStart(2, '0');
+            const normalizedDay = day.padStart(2, '0');
+
+            data.reservationDate = `${normalizedYear}-${normalizedMonth}-${normalizedDay}`;
             console.log(data);
-            const respuesta = await API_PROTOTYPES.reservation.post(data);
-            
-            console.log(respuesta)
-            
+
+            let respuesta = await API_PROTOTYPES.reservation.post(data);
+            const res = await API_PROTOTYPES.auth.getAll();
+
+            respuesta = {
+                ...respuesta,
+                reservation: {
+                    ...respuesta.reservation,
+                    userName: res.users.find(user => user.id === respuesta.reservation.userId).name
+                }
+            };
+                        
             dispatch({
                 type: "SET_RESERVATION",
                 payload: respuesta.reservation
             })
         } catch (error) {
             console.log(error)
-            // showMessage(error.response.data)
         }
     }
 
     const getReservation = async (userId) => {
         try {
+            let respuesta = await API_PROTOTYPES.reservation.get(userId);
+            const res = await API_PROTOTYPES.auth.getAll();
 
-            console.log(userId, "linea 58")
-            const respuesta = await API_PROTOTYPES.reservation.get(userId);
+            respuesta = {
+                ...respuesta,
+                reservations: respuesta.reservations.map(reservation => {
+                    const user = res.users.find(user => user.id === reservation.userId);
+                    return {
+                        ...reservation,
+                        userName: user ? user.name : 'Unknown'
+                    };
+                })
+            };
 
-            console.log(respuesta, "aca")
+
+            
             
             dispatch({
                 type: "GET_RESERVATIONS",
@@ -88,9 +114,16 @@ const ReservationState = ({ children }) => {
 
     const updateReservation = async (data) => {
         try {
-            const respuesta = await API_PROTOTYPES.reservation.put(data);
+            let respuesta = await API_PROTOTYPES.reservation.put(data);
+            const res = await API_PROTOTYPES.auth.getAll();
 
-            console.log(respuesta, "linea 77")
+            respuesta = {
+                ...respuesta,
+                reservation: {
+                    ...respuesta.reservation,
+                    userName: res.users.find(user => user.id === respuesta.reservation.userId).name
+                }
+            };            
 
             if (respuesta.reservation !== null){
                 dispatch({
