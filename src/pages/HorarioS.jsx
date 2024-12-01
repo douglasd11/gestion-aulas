@@ -233,7 +233,7 @@ const HorarioS = () => {
         text: "Tu reservación ha sido creada exitosamente.",
         icon: "success",
         confirmButtonText: "Aceptar",
-        didClose: () => {
+        onResolve: () => {
           navigate(ROUTES.dashboard.reservations);
         },
       });
