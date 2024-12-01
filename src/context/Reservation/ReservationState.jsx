@@ -1,12 +1,12 @@
-import { useEffect, useReducer, useState  } from 'react';
+import { useEffect, useReducer } from 'react';
 
 import { node } from '@/tools/Types';
 
+import useSession from '../Auth/useSession';
 import ReservationContext from './ReservationContext';
 import ReservationReducer from './ReservationReducer';
-import useSession from '../Auth/useSession';
 
-import { API_PROTOTYPES } from '../../api/services'
+import { API_PROTOTYPES } from '../../api/services';
 
 
 
@@ -14,7 +14,7 @@ const ReservationState = ({ children }) => {
 
     const { session } = useSession()
 
-    
+    console.log(session, "linea 20")
     const initialState = {
         reservation: null,
         reservations: []
@@ -107,6 +107,7 @@ const ReservationState = ({ children }) => {
         if (session){
             const userId = session.user.id ? session.user.id : session.user.uuid;
             getReservation(userId)
+            console.log(userId, "linea 108")
         }
     }, [session]);
 

@@ -63,6 +63,7 @@ function SessionState({ children }) {
       setSession(session)
       navigate(ROUTES.dashboard.home)
     }else if (!isAuthRute && !session) {
+      setSession(null)
       navigate(ROUTES.auth.login)
     }else{
       setSession(session)
