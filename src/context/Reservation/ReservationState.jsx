@@ -62,12 +62,12 @@ const ReservationState = ({ children }) => {
     const getAllReservations = async () => {
         try {
             let respuesta = await API_PROTOTYPES.reservation.getAll();
-            const users = await API_PROTOTYPES.auth.getAll();
+            const res = await API_PROTOTYPES.auth.getAll();
 
             respuesta = {
                 ...respuesta,
                 reservations: respuesta.reservations.map(reservation => {
-                    const user = users.find(user => user.id === reservation.userId);
+                    const user = res.users.find(user => user.id === reservation.userId);
                     return {
                         ...reservation,
                         userName: user ? user.name : 'Unknown'
@@ -75,7 +75,7 @@ const ReservationState = ({ children }) => {
                 })
             };
 
-            console.log(respuesta)
+            console.log(respuesta, "linea 78")
             
             dispatch({
                 type: "GET_RESERVATIONS",
@@ -121,7 +121,11 @@ const ReservationState = ({ children }) => {
     useEffect(() => {
         if (session){
             const userId = session.user.id ? session.user.id : session.user.uuid;
-            getReservation(userId)
+            if (session.user.role === "administrativo"){
+                getAllReservations()
+            } else {
+                getReservation(userId)
+            }
             console.log(userId, "linea 108")
         }
     }, [session]);

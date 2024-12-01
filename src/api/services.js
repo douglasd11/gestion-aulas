@@ -68,7 +68,7 @@ export const API_PROTOTYPES = Object.freeze({
     },
     getAll: async () => {
       try {
-        const response = await axios.get(`/reservations`);
+        const response = await axios.get(`/all-reservations`);
         return response.data;
       } catch (error) {
         console.error("Error en el inicio de sesión:", error);
