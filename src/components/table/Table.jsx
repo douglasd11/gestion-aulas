@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { any, array, arrayOf, func, oneOf, shape, string } from '../../tools/Types'
 import Paginate from './Paginate'
 import Row from './Row'
@@ -35,6 +35,9 @@ function Table({ config }) {
         [dataTable, sorted, config.data] // Dependencias para que el hook se mantenga actualizado
     );
     
+    useEffect(() => {
+        setDataTable(config.data)
+    }, [config.data])
 
     return (
         <div className="relative flex flex-col w-full text-slate-900 bg-white shadow-sm border rounded-md bg-clip-border">

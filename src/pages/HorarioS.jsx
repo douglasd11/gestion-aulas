@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 
 import ReservationContext from "../context/Reservation/ReservationContext";
 import useSession from "../context/Auth/useSession";
+import SweetAlert2 from "react-sweetalert2";
 
 
 const HorarioS = () => {
@@ -20,6 +21,8 @@ const HorarioS = () => {
 
     const { session } = useSession()
     const { reservations, insertReservation } = useContext(ReservationContext);
+    const [swalProps, setSwalProps] = useState({});
+
 
     const [motivo, setMotivo] = useState("");
     const [fechaSeleccionada, setFechaSeleccionada] = useState();
@@ -208,26 +211,33 @@ const HorarioS = () => {
         handleClose: () => {},
     });
 
-
+   
     const handleConfirmReservations = () => {
-        console.log("Reservar", horasSeleccionadas);
-        closeModal();
-
-        insertReservation({
-            spaceId: idRoom,
-            userId: session.user.id ? session.user.id : session.user.uuid,
-            reservationDate: fechaSeleccionada.year+"-"+fechaSeleccionada.month+"-"+fechaSeleccionada.date,
-            startTime: horasSeleccionadas[0].hora,
-            endTime: horasSeleccionadas[horasSeleccionadas.length - 1].hora,
-            reservationReason: motivo !== "" ? motivo : "No especificado",
-            status: "pendiente",
-            reservationType: "normal",
-        });
-
-        alert("Reservación exitosa");
-
-        navigate(ROUTES.dashboard.reservations);
-    }
+      console.log("Reservar", horasSeleccionadas);
+      closeModal();
+  
+      insertReservation({
+        spaceId: idRoom,
+        userId: session.user.id ? session.user.id : session.user.uuid,
+        reservationDate: `${fechaSeleccionada.year}-${fechaSeleccionada.month}-${fechaSeleccionada.date}`,
+        startTime: horasSeleccionadas[0].hora,
+        endTime: horasSeleccionadas[horasSeleccionadas.length - 1].hora,
+        reservationReason: motivo !== "" ? motivo : "No especificado",
+        status: "pendiente",
+        reservationType: "normal",
+      });
+  
+      setSwalProps({
+        show: true,
+        title: "¡Reservación exitosa!",
+        text: "Tu reservación ha sido creada exitosamente.",
+        icon: "success",
+        confirmButtonText: "Aceptar",
+        didClose: () => {
+          navigate(ROUTES.dashboard.reservations);
+        },
+      });
+    };
 
     useEffect(() => {
         setCurrentWeekDays(getCurrentWeekDays());
@@ -427,6 +437,8 @@ const HorarioS = () => {
                     </button>
                 </div>
             </Modal>
+
+            <SweetAlert2 {...swalProps} />
         </>
     );
 };

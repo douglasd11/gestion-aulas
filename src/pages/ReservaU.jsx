@@ -1,16 +1,17 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "../App.css";
 import Table from "../components/table/Table";
 import { ROUTES } from "../tools/CONSTANTS";
-import { Link } from "react-router-dom";
 
-import ReservationContext from "../context/Reservation/ReservationContext";
 import Info from "../components/Info";
 import useSession from "../context/Auth/useSession";
+import ReservationContext from "../context/Reservation/ReservationContext";
 
 const ReservaU = () => {
     const { session } = useSession();
     const { reservations, updateReservation } = useContext(ReservationContext);
+
 
     // const [reservas, setReservas] = useState([
     //     { dia: "Lunes", hora: "8:00", salon: "A101" },
@@ -25,7 +26,7 @@ const ReservaU = () => {
     // };
 
     useEffect(() => {
-        console.log(reservations);
+        console.table(reservations);
     }, [reservations]);
 
     return (
