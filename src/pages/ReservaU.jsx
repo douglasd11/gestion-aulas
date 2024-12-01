@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../App.css";
 import Table from "../components/table/Table";
@@ -7,12 +7,13 @@ import { ROUTES } from "../tools/CONSTANTS";
 import Info from "../components/Info";
 import useSession from "../context/Auth/useSession";
 import ReservationContext from "../context/Reservation/ReservationContext";
+import SweetAlert2 from "react-sweetalert2";
 
 const ReservaU = () => {
     const { session } = useSession();
     const { reservations, updateReservation } = useContext(ReservationContext);
 
-
+    const [swalProps, setSwalProps] = useState({});
     // const [reservas, setReservas] = useState([
     //     { dia: "Lunes", hora: "8:00", salon: "A101" },
     //     { dia: "Martes", hora: "9:00", salon: "B202" },
@@ -29,11 +30,41 @@ const ReservaU = () => {
         console.table(reservations);
     }, [reservations]);
 
+    const handleDelete = (item) => {
+        if (item) {
+            setSwalProps({
+                show: true,
+                title: "¿Estás seguro?",
+                text: "Esto cancelará la reservación. Esta acción no se puede deshacer.",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Sí, cancelar",
+                cancelButtonText: "No, mantener",
+                onConfirm: () => {
+                    item.status = "Cancelada";
+                    updateReservation(item);
+                    setSwalProps({
+                        show: true,
+                        title: "¡Cancelada!",
+                        text: "La reservación ha sido cancelada.",
+                        icon: "success",
+                    });
+                },
+                onResolve: () => {
+                    setSwalProps({
+                        show: false,
+                    });
+                },
+            });
+        }
+        
+    };
+
     return (
         <>
             <main className="flex-1 p-10 bg-slate-50">
                 <div className="flex gap-1 mb-4">
-                    <h1 className="text-2xl font-bold">{ session?.user.role === "administrativo" ? 'Listado de reservas' : 'Mis reservas' }</h1>
+                    <h1 className="text-2xl font-bold">{session?.user.role === "administrativo" ? 'Listado de reservas' : 'Mis reservas'}</h1>
                     <Info>
                         <div className="p-3 w-72 bg-white">
                             <p className="text-sm text-gray">
@@ -147,9 +178,7 @@ const ReservaU = () => {
                                             </svg>
                                         ),
                                         onClick: (item) => {
-                                            item ?
-                                            item.status="Cancelada" : null;
-                                            updateReservation(item);
+                                            handleDelete(item);
                                         },
                                     },
                                 ],
@@ -161,6 +190,7 @@ const ReservaU = () => {
                     )}
                 </div>
             </main>
+            <SweetAlert2 {...swalProps} />
         </>
     );
 };
