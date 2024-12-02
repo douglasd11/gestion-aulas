@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { CalendarIcon, ClassroomIcon, DeviceIcon, HomeIcon } from '../components/icons';
+import { CalendarIcon, ClassroomIcon, DeviceIcon, HomeIcon } from '../components/Icons';
 import { ROUTES } from '../tools/CONSTANTS';
 import useSession from '../context/Auth/useSession';
 
