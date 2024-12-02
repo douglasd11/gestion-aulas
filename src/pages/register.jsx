@@ -1,8 +1,9 @@
+import { useState } from 'react';
 import { useFormValidate } from 'use-form-validate';
 import Logo from '../assets/LogoIsoft.png';
 import useSession from '../context/Auth/useSession';
-import { useState } from 'react';
 import { ROUTES } from '../tools/CONSTANTS';
+import SweetAlert2 from 'react-sweetalert2';
 
 function Register() {
   const [responseError, setResponseError] = useState('')
@@ -15,34 +16,46 @@ function Register() {
   } = useFormValidate();
 
   const { handleSignUp, loading_auth } = useSession()
+  const [swalProps, setSwalProps] = useState({});
 
   const onSubmit = (formData) => {
     console.log(formData)
     handleSignUp(formData)
-    .then(({response}) => {
-      if (response.status === 200) {
+      .then(({ response }) => {
+        if (response.status === 200) {
           resetForm()
-      }else{
+          setSwalProps({
+            show: true,
+            title: "Registro exitoso",
+            text: "Se ha registrado correctamente",
+            icon: "success",
+            onResolve: () => {
+              setSwalProps({
+                show: false,
+              });
+            },
+          });
+        } else {
           console.log(response)
           if (response.data.message) {
-              setResponseError(response.data.message)
-          }else{
-              console.error(response)
+            setResponseError(response.data.message)
+          } else {
+            console.error(response)
           }
-      }
-  })
-  .catch((error) => {
-      if (error.response.data) {
+        }
+      })
+      .catch((error) => {
+        if (error.response.data) {
           if (error.response.data.message) {
-              alert(error.response.data.message)
-          }else{
-              console.error(error)
+            alert(error.response.data.message)
+          } else {
+            console.error(error)
           }
-      }
-  })
+        }
+      })
   };
   return (
-
+<>
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="relative max-w-md w-full p-6 border border-gray-300 rounded-lg shadow-lg bg-white">
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -72,7 +85,7 @@ function Register() {
           />
           <p className="text-red-500">{getFieldError("password")}</p>
           <select
-            {...getFieldProps("role", { required: true },undefined,'usuario')}
+            {...getFieldProps("role", { required: true }, undefined, 'usuario')}
             className={`w-full p-2 mb-1 mt-3 border ${errors['rol'] ? 'border-red-500' : 'border-gray-300'}  rounded`}
           >
             <option value="usuario">Estudiante/Profesor</option>
@@ -99,6 +112,8 @@ function Register() {
         </form >
       </div>
     </div >
+    <SweetAlert2 {...swalProps} />
+    </>
   );
 }
 
