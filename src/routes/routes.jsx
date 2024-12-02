@@ -7,7 +7,7 @@ import ReservationState from "../context/Reservation/ReservationState";
 
 // Mapa estático de rutas a módulos
 const componentMap = {
-  "Login": () => import("../pages/Login"),
+  "Login": () => import("../pages/login"),
   "Register": () => import("../pages/register"),
   "Portada": () => import("../pages/Portada"),
   "Inicio": () => import("../pages/Inicio"),
