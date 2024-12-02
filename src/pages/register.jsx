@@ -115,7 +115,7 @@ function Register() {
             <p className="text-red-500">{responseError}</p>
           </div>
           <div>
-            <p className="text-center mt-6 mb-4">¿Ya tienes cuenta? <a href={ROUTES.auth.login} className="text-blue-500">Inicia sesion</a></p>
+            <p className="text-center mt-6 mb-4">¿Ya tienes cuenta? <a href={ROUTES.auth.login} className="text-blue-500">Inicia sesión</a></p>
           </div>
         </form >
       </div>

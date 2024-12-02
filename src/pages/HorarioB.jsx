@@ -57,7 +57,7 @@ const HorarioB = () => {
                         <Info>
                             <div className="p-3 w-72 bg-white">
                                 <p className="text-sm text-gray">
-                                    Aquí se presentan los salones por su respectivo
+                                    Aquí se presentan los salones por su respectivo bloque
                                 </p>
                             </div>
                         </Info>

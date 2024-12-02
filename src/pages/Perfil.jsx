@@ -92,7 +92,7 @@ const Perfil = () => {
     return (
         <>
             <main className="flex-1 p-10 bg-slate-50">
-                <h2 className="text-3xl font-medium px-8 mb-10">Configuracion de perfil</h2>
+                <h2 className="text-3xl font-medium px-8 mb-10">Configuración de perfil</h2>
                 <div className="flex gap-20">
                     <div className="p-8">
                         <div className="flex flex-col justify-center items-center">
@@ -135,7 +135,7 @@ const Perfil = () => {
                                     htmlFor="email"
                                     className="block text-sm font-medium text-gray-700"
                                 >
-                                    Correo electronico
+                                    Correo electrónico
                                 </label>
                                 <input
                                     type="email"

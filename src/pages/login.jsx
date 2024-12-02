@@ -44,7 +44,7 @@ const Login = () => {
                         <img src={Logo} alt="Company Logo" className="size-20" />
                     </div>
 
-                    <h1 className="text-2xl font-bold mb-6 text-center text-slate-800">Iniciar sesion</h1>
+                    <h1 className="text-2xl font-bold mb-6 text-center text-slate-800">Iniciar sesión</h1>
                     {/* <select
                         {...getFieldProps("role", { required: true }, undefined, 'user')}
                         className="w-full p-2 mb-1 mt3 border border-gray-300 rounded"

@@ -105,7 +105,7 @@ const MenuDropdown = () => {
                                     Perfil
                                 </Link>
                                 <button onClick={handleLogOut} className="flex w-full items-center justify-between px-4 py-2.5 text-sm font-medium hover:bg-gray-100">
-                                    Cerrar sesion
+                                    Cerrar Sesión
                                 </button>
                             </div>
     
