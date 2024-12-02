@@ -30,16 +30,16 @@ const router = [
       </SessionState>,
     children: [
       {
+        path: ROUTES.auth.welcome,
+        element: <LoadComponent component="Portada" componentsMap={componentMap} loading={<></>} />,
+      },
+      {
         path: ROUTES.auth.login,
         element: <LoadComponent component="Login" componentsMap={componentMap} loading={<></>} />,
       },
       {
         path: ROUTES.auth.register,
         element: <LoadComponent component="Register" componentsMap={componentMap} loading={<></>} />,
-      },
-      {
-        path: ROUTES.auth.welcome,
-        element: <LoadComponent component="Portada" componentsMap={componentMap} loading={<></>} />,
       },
       {
         path: ROUTES.dashboard.home,

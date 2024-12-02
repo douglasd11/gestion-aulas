@@ -52,7 +52,7 @@ function SessionState({ children }) {
     setSession(null)
     guardarEnLocalStorage('session', null)
     setLoading(false)
-    navigate(ROUTES.auth.login)
+    navigate(ROUTES.auth.welcome)
   }, [])
 
   const handleAuthVerify = useCallback(async () => {
@@ -64,7 +64,7 @@ function SessionState({ children }) {
       navigate(ROUTES.dashboard.home)
     }else if (!isAuthRute && !session) {
       setSession(null)
-      navigate(ROUTES.auth.login)
+      navigate(ROUTES.auth.welcome)
     }else{
       setSession(session)
     }

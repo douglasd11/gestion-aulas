@@ -62,13 +62,13 @@ const HorarioB = () => {
                             </div>
                         </Info>
                     </div>
-                    <Link
-                        to={ROUTES.dashboard.reservations}
+                    <button
+                        onClick={() => navigate(-1)}
                         className={"px-4 py-2 rounded h-10 text-white bg-slate-800 flex gap-2 items-center text-sm font-medium"}
                     >
                         <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none" stroke="currentColor"  strokeWidth="2"  strokeLinecap="round"  strokeLinejoin="round"  className="icon icon-tabler icons-tabler-outline icon-tabler-arrow-back"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 11l-4 4l4 4m-4 -4h11a4 4 0 0 0 0 -8h-1" /></svg>
                         Regresar
-                    </Link>
+                    </button>
                 </div>
 
                 <label

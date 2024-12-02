@@ -49,6 +49,22 @@ const Perfil = () => {
 
             return;
         }
+        if (currentPassword === "") {
+            setSwalProps({
+                show: true,
+                title: "Error",
+                text: "Debes ingresar tu contraseña actual",
+                icon: "warning",
+                onResolve: () => {
+                    setSwalProps({
+                        show: false,
+                    });
+                },
+            });
+
+            return;
+        }
+
         handleUpdate({
             id: user.id,
             name,
@@ -70,7 +86,7 @@ const Perfil = () => {
             },
         });
 
-
+        setCurrentPassword("");
     };
 
     return (
