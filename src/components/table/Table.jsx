@@ -7,20 +7,16 @@ import TableHead from './TableHead'
 function Table({ config }) {
 
     const [dataTable, setDataTable] = useState(config.data)
-    const [sorted, setSorted] = useState(false)
+    const [sorted, setSorted] = useState()
     const { otherOptions: OtherOptions } = config
 
     const sortByCol = useCallback(
         (key) => {
             console.log("Sorting by", key);
-    
+
             const newSortedData = [...dataTable]; // Crear una copia para evitar mutaciones
-    
-            // Verificar si ya está ordenado
-            if (sorted) {
-                // Restaurar el orden original
-                setDataTable([...config.data]); // Asegurarse de restaurar desde los datos originales
-            } else {
+
+            if ((sorted && sorted.direction === "desc") || !sorted) {
                 // Ordenar ascendentemente
                 newSortedData.sort((a, b) => {
                     if (JSON.stringify(a[key]) < JSON.stringify(b[key])) return -1;
@@ -28,19 +24,33 @@ function Table({ config }) {
                     return 0;
                 });
                 setDataTable(newSortedData); // Actualizar con los datos ordenados
+                setSorted({
+                    key,
+                    direction: "asc"
+                });
+            } else {
+                // Ordenar descendentemente
+                newSortedData.sort((a, b) => {
+                    if (JSON.stringify(a[key]) > JSON.stringify(b[key])) return -1;
+                    if (JSON.stringify(a[key]) < JSON.stringify(b[key])) return 1;
+                    return 0;
+                });
+                setDataTable(newSortedData); // Actualizar con los datos ordenados
+                setSorted({
+                    key,
+                    direction: "desc"
+                });
             }
-    
-            setSorted(!sorted); // Alternar el estado de sorted
         },
         [dataTable, sorted, config.data] // Dependencias para que el hook se mantenga actualizado
     );
-    
+
     useEffect(() => {
         if (JSON.stringify(config.data) !== JSON.stringify(dataTable)) {
             setDataTable(config.data);
         }
     }, [config.data]);
-    
+
 
     return (
         <div className="relative flex flex-col w-full text-slate-900 bg-white shadow-sm border rounded-md bg-clip-border">
@@ -68,6 +78,7 @@ function Table({ config }) {
                         actions={!!config.actions}
                         actionsConfig={config.actionsConfig}
                         sortable={sortByCol}
+                        sortBy={sorted}
                     />
                     <tbody>
                         {
@@ -82,7 +93,7 @@ function Table({ config }) {
                     </tbody>
                 </table>
             </div>
-            <Paginate 
+            <Paginate
                 data={config.data}
                 setDataTable={setDataTable}
                 limit={5}

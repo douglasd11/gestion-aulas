@@ -1,7 +1,7 @@
 import { arrayOf, bool, func, shape, string } from "../../tools/Types"
 import ColHead from "./ColHead"
 
-function TableHead({ cols, actions, actionsConfig,sortable }) {
+function TableHead({ cols, actions, actionsConfig,sortable,sortBy }) {
     return (
         <thead>
             <tr>
@@ -10,9 +10,11 @@ function TableHead({ cols, actions, actionsConfig,sortable }) {
                         <ColHead
                             key={index}
                             title={col.label}
+                            headKey={col.key}
                             sortable={()=>{
                                 sortable(col.key)
                             }}
+                            sortBy={sortBy}
                         />
                     ))
                 }
@@ -41,7 +43,11 @@ TableHead.propTypes = {
     actionsConfig: shape({
         label: string.isRequired
     }),
-    sortable: func
+    sortable: func,
+    sortBy: shape({
+        key: string,
+        direction: string
+    }) || null
 }
 
 export default TableHead
