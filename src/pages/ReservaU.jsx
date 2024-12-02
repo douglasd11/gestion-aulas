@@ -19,17 +19,6 @@ const ReservaU = () => {
     const [swalProps, setSwalProps] = useState({});
     const [alertKey, setAlertKey] = useState(0); // Key para forzar el re-render
 
-    // const [reservas, setReservas] = useState([
-    //     { dia: "Lunes", hora: "8:00", salon: "A101" },
-    //     { dia: "Martes", hora: "9:00", salon: "B202" },
-    //     { dia: "Miércoles", hora: "10:00", salon: "C303" },
-    //     { dia: "Jueves", hora: "11:00", salon: "B204" },
-    //     { dia: "Viernes", hora: "12:00", salon: "A105" },
-    // ]);
-
-    // const handleDelete = (codigo) => {
-    //     alert(`Cancelando reserva del ${codigo}`);
-    // };
 
     const headerAdmin = [
         { key: "userName", label: "Usuario", type: "text" },
@@ -66,7 +55,7 @@ const ReservaU = () => {
 
     const handleDelete = (item) => {
         console.log(item, "handleDelete");
-        if (item && item.status === "Pendiente") {
+        if (item && item.status === "pendiente") {
             setSwalProps({
                 show: true,
                 title: "¿Estás seguro?",

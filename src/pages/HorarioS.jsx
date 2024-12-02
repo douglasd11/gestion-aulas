@@ -281,13 +281,13 @@ const HorarioS = () => {
                 </div>
 
                 <div className="flex items-center gap-2 mb-4 mt-3">
-                    <button onClick={() => setPivoteWeek(0)} className={`p-4 py-2 mr-3 border rounded-full min-w-20 border-slate-500 text-slate-600 text-sm font-medium transition-all hover:bg-slate-200 ${pivoteWeek === 0 ? 'bg-slate-200' : 'bg-white'}`}>
+                    <button onClick={() => {setPivoteWeek(0), setHorasSeleccionadas([])}} className={`p-4 py-2 mr-3 border rounded-full min-w-20 border-slate-500 text-slate-600 text-sm font-medium transition-all hover:bg-slate-200 ${pivoteWeek === 0 ? 'bg-slate-200' : 'bg-white'}`}>
                         Hoy
                     </button>
-                    <button onClick={() => setPivoteWeek(pivoteWeek - 1)} className="transition-all hover:bg-slate-200 rounded-full p-1 flex justify-center items-center">
+                    <button onClick={() => {setPivoteWeek(pivoteWeek - 1), setHorasSeleccionadas([])}} className="transition-all hover:bg-slate-200 rounded-full p-1 flex justify-center items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"  className="icon icon-tabler icons-tabler-outline icon-tabler-chevron-left"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 6l-6 6l6 6" /></svg>
                     </button>
-                    <button onClick={() => setPivoteWeek(pivoteWeek + 1)} className="transition-all hover:bg-slate-200 rounded-full p-1 flex justify-center items-center">
+                    <button onClick={() => {setPivoteWeek(pivoteWeek + 1). setHorasSeleccionadas([])}} className="transition-all hover:bg-slate-200 rounded-full p-1 flex justify-center items-center">
                         <svg xmlns="http://www.w3.org/2000/svg"  width="22"  height="22"  viewBox="0 0 24 24"  fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6l-6 6" /></svg>
                     </button>
                     <h2 className="font-semibold text-xl text-slate-700 ml-4">{currentMonthName} {currentYear}</h2>
@@ -307,11 +307,6 @@ const HorarioS = () => {
                                     </th>
                                 ))
                             }
-                            {/* <th className="px-4 py-2 text-center font-medium min-w-24 w-[16.5%]"><div><p>LUN</p><span className="text-base">25</span></div></th>
-                            <th className="px-4 py-2 text-center font-medium min-w-24 w-[16.5%]"><div><p>MAR</p><span className="text-base">25</span></div></th>
-                            <th className="px-4 py-2 text-center font-medium min-w-24 w-[16.5%]"><div><p>MIÉ</p><span className="text-base">25</span></div></th>
-                            <th className="px-4 py-2 text-center font-medium min-w-24 w-[16.5%]"><div><p>JUE</p><span className="text-base">25</span></div></th>
-                            <th className="px-4 py-2 text-center font-medium min-w-24 w-[16.5%]"><div><p>VIE</p><span className="text-base">25</span></div></th> */}
                         </tr>
                     </thead>
                     <tbody>
@@ -327,7 +322,7 @@ const HorarioS = () => {
                                     "jueves",
                                     "viernes",
                                 ].map((dia, index) => {
-                                    // console.log(reservasS, "antes del filtro")
+                                    console.log(currentWeekDays[index], "antes del filtro")
                                     const reserva = reservasS.find(
                                         (reserva) =>
                                             reserva.horas.includes(
@@ -340,22 +335,35 @@ const HorarioS = () => {
                                             hora.hora === `${7 + i}:00` &&
                                             hora.dia === dia
                                     );
+                                    
+                                    let dateAu = new Date();
+                                    dateAu.setHours(0, 0, 0, 0);
+                                    
+                                    let currentWeekAux = currentWeekDays[index]?.year + "-" + currentWeekDays[index]?.month + "-" + currentWeekDays[index]?.date;
+                                    const currentDate = new Date(normalizeDateString(currentWeekAux));
+                                    const isPastDate = currentDate < dateAu;
+
+                                    console.log(reserva, "casilla de reserva")
+                                    // const isReservationOld = reserva?.numeroDia < currentDay;
+
                                     return (
                                         <td
                                             key={dia}
-                                            onClick={() =>
-                                                handleClick(
-                                                    `${7 + i}`,
-                                                    dia,
-                                                    currentWeekDays[index],
-                                                    reserva
-                                                )
+                                            onClick={() => {
+                                                if (!isPastDate && !reserva) {
+                                                    handleClick(
+                                                        `${7 + i}`,
+                                                        dia,
+                                                        currentWeekDays[index],
+                                                        reserva
+                                                    )
+                                                }
                                             }
-                                            className={`border px-4 py-2 cursor-pointer hover:bg-gray-100 ${
+                                                
+                                            }
+                                            className={`border px-4 py-2 ${ (!isPastDate && !reserva) && 'hover:bg-gray-100 cursor-pointer'} ${ isSelected && "bg-slate-300" } ${
                                                 reserva?.tipo === "normal" ? "bg-green-300" : reserva?.tipo === "recurrente" ? "bg-blue-300" : ""
-                                            } ${
-                                                isSelected ? "bg-slate-300" : ""
-                                            }`}
+                                            } `}
                                         >
                                             {reserva
                                                 ? `${reserva?.tipo === "normal" ? 'Reserva' : '' } ${reserva?.id.slice(0, 4).toUpperCase()} - ${reserva?.razon}`

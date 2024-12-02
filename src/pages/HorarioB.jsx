@@ -5,9 +5,13 @@ import Info from "../components/Info";
 import { Link, useNavigate } from "react-router-dom";
 import { ROUTES } from "../tools/CONSTANTS";
 
+import SweetAlert2 from "react-sweetalert2";
+
 const HorarioB = () => {
 
     const navigate = useNavigate();
+
+    const [swalProps, setSwalProps] = useState({});
 
     const [bloque, setBloque] = useState("");
     const salonesPorBloque = {
@@ -39,10 +43,8 @@ const HorarioB = () => {
     };
 
     const handleClick = (codigo) => {
-        alert(`Cargando horario del ${codigo}`);
 
         navigate(`/week-room/${codigo}`);
-        
     };
 
     return (
@@ -159,6 +161,7 @@ const HorarioB = () => {
                     <></>
                 )}
             </main>
+            <SweetAlert2 {...swalProps} />
         </>
     );
 };
