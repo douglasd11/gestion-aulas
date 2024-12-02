@@ -11,20 +11,20 @@ function Paginate({ data, setDataTable, limit }) {
     // Manejar cambio de página
     const handlePageChange = (newPage) => {
         if (newPage < 1 || newPage > totalPages) return; // Prevenir fuera de rango
-
         setCurrentPage(newPage);
 
         // Calcular los datos para la página actual
         const start = (newPage - 1) * limit;
         const end = start + limit;
         const pageData = data.slice(start, end);
-
-        setDataTable(pageData); // Actualizar los datos visibles
+        setDataTable(pageData);
     };
 
     useEffect(() => {
-        handlePageChange(currentPage)
-    }, []);	
+      setTimeout(() => {
+        handlePageChange(1);
+      }, 5);
+    }, [totalPages]);	
 
     return (
         <div className="flex items-center justify-between p-3">

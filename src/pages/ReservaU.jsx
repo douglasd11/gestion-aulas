@@ -59,13 +59,7 @@ const ReservaU = () => {
             chipCondition: "pendiente",
         },
     ];
-
-    useEffect(() => {
-        console.table(reservations);
-    }, [reservations]);
-
     const handleDelete = (item) => {
-        console.log(item, "handleDelete");
         if (item && item.status === "Pendiente") {
             setSwalProps({
                 show: true,

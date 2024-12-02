@@ -36,8 +36,11 @@ function Table({ config }) {
     );
     
     useEffect(() => {
-        setDataTable(config.data)
-    }, [config.data])
+        if (JSON.stringify(config.data) !== JSON.stringify(dataTable)) {
+            setDataTable(config.data);
+        }
+    }, [config.data]);
+    
 
     return (
         <div className="relative flex flex-col w-full text-slate-900 bg-white shadow-sm border rounded-md bg-clip-border">
@@ -82,7 +85,7 @@ function Table({ config }) {
             <Paginate 
                 data={config.data}
                 setDataTable={setDataTable}
-                limit={6}
+                limit={5}
             />
         </div>
     )
