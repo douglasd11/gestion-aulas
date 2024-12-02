@@ -9,7 +9,7 @@ function ColHead({
     return (
         <th 
         onClick={sortable}
-        className={`p-4 transition-colors cursor-pointer border-y border-slate-200 ${sortBy.key === headKey ?'bg-slate-200':'bg-slate-50'} hover:bg-slate-100`}>
+        className={`p-4 transition-colors cursor-pointer border-y border-slate-200 ${sortBy?.key === headKey ?'bg-slate-200':'bg-slate-50'} hover:bg-slate-100`}>
             <p className="flex items-center justify-between gap-2 font-sans text-sm font-medium leading-none text-black select-none">
                 {title}
                 <svg
